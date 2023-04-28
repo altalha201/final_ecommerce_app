@@ -5,3 +5,4 @@ const Color colorGray = Color.fromRGBO(152, 152, 153, 1.0);
 const Color colorGrayLite = Color.fromRGBO(243, 243, 243, 1.0);
 const Color navIconColor = Color.fromRGBO(158, 158, 158, 1.0);
 const Color colorWhite = Color.fromRGBO(254, 254, 254, 1.0);
+const Color colorBlack = Color.fromRGBO(0, 0, 0, 1.0);

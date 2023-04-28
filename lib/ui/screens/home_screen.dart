@@ -1,39 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../widgets/nav_icon_widget.dart';
+import '../utils/application_colors.dart';
+import '../widgets/svg_icon.dart';
+import 'home_screen_tabs/cart_tab.dart';
+import 'home_screen_tabs/category_tab.dart';
+import 'home_screen_tabs/home_tab.dart';
+import 'home_screen_tabs/wish_list_tab.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  var bodyWidgets = [
+    const HomeTab(),
+    const CategoryTab(),
+    const CartTab(),
+    const WishListTab()
+  ];
+
+  var currentTab = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SvgPicture.asset("assets/images/logo_nav.svg",),
-                  const Spacer(),
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        NavIconWidget(icon: Icons.person_outline,),
-                        NavIconWidget(icon: Icons.call_outlined,),
-                        NavIconWidget(icon: Icons.notifications_active_outlined,),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+      body: bodyWidgets[currentTab],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentTab,
+        selectedItemColor: colorPrimary,
+        unselectedItemColor: colorGray,
+        type: BottomNavigationBarType.fixed,
+        selectedFontSize: 12,
+        onTap: (value) {
+          setState(() {
+            currentTab = value;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: SVGIcon(
+              icon: SVGIcon(icon: SvgPicture.asset(
+                "assets/icons/home.svg",
+                color: currentTab == 0 ? colorPrimary : colorGray,),),
+            ),
+            label: "Home"
+          ),
+          BottomNavigationBarItem(
+            icon: SVGIcon(icon: SvgPicture.asset(
+              "assets/icons/category.svg",
+              color: currentTab == 1 ? colorPrimary : colorGray,),),
+            label: "Categories"
+          ),
+          BottomNavigationBarItem(
+            icon: SVGIcon(icon: SvgPicture.asset(
+              "assets/icons/cart.svg",
+              color: currentTab == 2 ? colorPrimary : colorGray,),),
+            label: "Cart"
+          ),
+          BottomNavigationBarItem(
+            icon: SVGIcon(icon: SvgPicture.asset(
+              "assets/icons/wish.svg",
+              color: currentTab == 3 ? colorPrimary : colorGray,),),
+            label: "Wish"
+          ),
+        ],
       ),
     );
   }
