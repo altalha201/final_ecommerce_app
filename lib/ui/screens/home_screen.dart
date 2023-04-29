@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentTab,
         selectedItemColor: colorPrimary,
-        unselectedItemColor: colorGray,
+        unselectedItemColor: iconColor,
         type: BottomNavigationBarType.fixed,
         selectedFontSize: 12,
         onTap: (value) {
@@ -46,26 +46,26 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: SVGIcon(
               icon: SVGIcon(icon: SvgPicture.asset(
                 "assets/icons/home.svg",
-                color: currentTab == 0 ? colorPrimary : colorGray,),),
+                color: currentTab == 0 ? colorPrimary : iconColor,),),
             ),
             label: "Home"
           ),
           BottomNavigationBarItem(
             icon: SVGIcon(icon: SvgPicture.asset(
               "assets/icons/category.svg",
-              color: currentTab == 1 ? colorPrimary : colorGray,),),
+              color: currentTab == 1 ? colorPrimary : iconColor,),),
             label: "Categories"
           ),
           BottomNavigationBarItem(
             icon: SVGIcon(icon: SvgPicture.asset(
               "assets/icons/cart.svg",
-              color: currentTab == 2 ? colorPrimary : colorGray,),),
+              color: currentTab == 2 ? colorPrimary : iconColor,),),
             label: "Cart"
           ),
           BottomNavigationBarItem(
             icon: SVGIcon(icon: SvgPicture.asset(
               "assets/icons/wish.svg",
-              color: currentTab == 3 ? colorPrimary : colorGray,),),
+              color: currentTab == 3 ? colorPrimary : iconColor,),),
             label: "Wish"
           ),
         ],

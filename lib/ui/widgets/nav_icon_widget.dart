@@ -19,7 +19,7 @@ class NavIconWidget extends StatelessWidget {
       child: CircleAvatar(
         radius: 16,
         backgroundColor: colorGrayLite,
-        child: Icon(icon, color: navIconColor,),
+        child: Icon(icon, color: iconColor,),
       ),
     );
   }
