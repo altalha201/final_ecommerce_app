@@ -3,19 +3,20 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../utils/application_colors.dart';
 import '../widgets/svg_icon.dart';
-import 'home_screen_tabs/cart_tab.dart';
-import 'home_screen_tabs/category_tab.dart';
-import 'home_screen_tabs/home_tab.dart';
-import 'home_screen_tabs/wish_list_tab.dart';
+import 'bottom_nav_bar_tabs/cart_tab.dart';
+import 'bottom_nav_bar_tabs/category_tab.dart';
+import 'bottom_nav_bar_tabs/home_tab.dart';
+import 'bottom_nav_bar_tabs/wish_list_tab.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+
+class BottomNavBarScreen extends StatefulWidget {
+  const BottomNavBarScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<BottomNavBarScreen> createState() => _BottomNavBarScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
 
   var bodyWidgets = [
     const HomeTab(),

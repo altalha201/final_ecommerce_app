@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../widgets/common_elevated_button.dart';
-import '../widgets/common_input_field.dart';
 import '../widgets/space.dart';
 import '../widgets/title_widgets.dart';
 import 'pin_verification_screen.dart';
@@ -24,18 +22,25 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const TitleWidgets(title: "Welcome Back", subtitle: "Please Enter Your Email Address"),
-            const CommonInputField(
-              hint: 'Email Address',
-              inputType: TextInputType.emailAddress,
+            const TitleWidgets(
+                title: "Welcome Back",
+                subtitle: "Please Enter Your Email Address"),
+            TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              decoration: const InputDecoration(
+                hintText: "Email Address",
+              ),
             ),
             verticalSpace(16.0),
-            CommonElevatedButton(
-              title: 'Next',
-              onTap: () {
-                Get.to(const PinVerificationScreen());
-              },
-            )
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Get.to(const PinVerificationScreen());
+                },
+                child: const Text("Next"),
+              ),
+            ),
           ],
         ),
       ),

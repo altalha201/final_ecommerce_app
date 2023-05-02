@@ -1,5 +1,3 @@
-import 'package:final_ecommerce_app/ui/widgets/common_elevated_button.dart';
-import 'package:final_ecommerce_app/ui/widgets/common_input_field.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/space.dart';
@@ -23,18 +21,48 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const TitleWidgets(title: "Complete Profile", subtitle: "Get started with us with your details"),
-                  const CommonInputField(hint: "First Name"),
+                  const TitleWidgets(
+                      title: "Complete Profile",
+                      subtitle: "Get started with us with your details"),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: "First Name",
+                    ),
+                  ),
                   verticalSpace(8.0),
-                  const CommonInputField(hint: "Last Name"),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: "Last Name",
+                    ),
+                  ),
                   verticalSpace(8.0),
-                  const CommonInputField(hint: "Mobile"),
+                  TextFormField(
+                    keyboardType: TextInputType.phone,
+                    decoration: const InputDecoration(
+                      hintText: "Mobile",
+                    ),
+                  ),
                   verticalSpace(8.0),
-                  const CommonInputField(hint: "City"),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: "City",
+                    ),
+                  ),
                   verticalSpace(8.0),
-                  const CommonInputField(hint: "Shipping Address", maxLines: 4,),
+                  TextFormField(
+                    maxLines: 4,
+                    decoration: const InputDecoration(
+                      hintText: "Shipping Address",
+                    ),
+                  ),
                   verticalSpace(16.0),
-                  CommonElevatedButton(title: "Complete", onTap: () {})
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: const Text("Complete"),
+                    ),
+                  ),
                 ],
               ),
             ),
