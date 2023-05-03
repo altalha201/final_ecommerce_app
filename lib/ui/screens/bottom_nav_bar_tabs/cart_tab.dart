@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/application_colors.dart';
-
 class CartTab extends StatelessWidget {
   const CartTab({Key? key}) : super(key: key);
 
@@ -9,11 +7,7 @@ class CartTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Cart",
-          style: TextStyle(color: appbarTextColor),
-        ),
-        backgroundColor: colorWhite,
+        title: const Text("Cart"),
       ),
     );
   }

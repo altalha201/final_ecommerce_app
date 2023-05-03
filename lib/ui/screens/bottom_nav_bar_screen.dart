@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../utils/application_colors.dart';
-import '../widgets/svg_icon.dart';
 import 'bottom_nav_bar_tabs/cart_tab.dart';
 import 'bottom_nav_bar_tabs/category_tab.dart';
 import 'bottom_nav_bar_tabs/home_tab.dart';
 import 'bottom_nav_bar_tabs/wish_list_tab.dart';
-
 
 class BottomNavBarScreen extends StatefulWidget {
   const BottomNavBarScreen({Key? key}) : super(key: key);
@@ -17,7 +15,6 @@ class BottomNavBarScreen extends StatefulWidget {
 }
 
 class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
-
   var bodyWidgets = [
     const HomeTab(),
     const CategoryTab(),
@@ -38,40 +35,58 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
         type: BottomNavigationBarType.fixed,
         selectedFontSize: 12,
         onTap: (value) {
-          setState(() {
-            currentTab = value;
-          });
+          currentTab = value;
+          if (mounted) {
+            setState(() {});
+          }
         },
         items: [
           BottomNavigationBarItem(
-            icon: SVGIcon(
-              icon: SVGIcon(icon: SvgPicture.asset(
+            icon: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: SvgPicture.asset(
                 "assets/icons/home.svg",
-                color: currentTab == 0 ? colorPrimary : iconColor,),),
+                height: 24,
+                color: currentTab == 0 ? colorPrimary : iconColor,
+              ),
             ),
-            label: "Home"
+            label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: SVGIcon(icon: SvgPicture.asset(
-              "assets/icons/category.svg",
-              color: currentTab == 1 ? colorPrimary : iconColor,),),
-            label: "Categories"
+            icon: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: SvgPicture.asset(
+                "assets/icons/category.svg",
+                height: 24,
+                color: currentTab == 1 ? colorPrimary : iconColor,
+              ),
+            ),
+            label: "Categories",
           ),
           BottomNavigationBarItem(
-            icon: SVGIcon(icon: SvgPicture.asset(
-              "assets/icons/cart.svg",
-              color: currentTab == 2 ? colorPrimary : iconColor,),),
-            label: "Cart"
+            icon: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: SvgPicture.asset(
+                "assets/icons/cart.svg",
+                height: 24,
+                color: currentTab == 2 ? colorPrimary : iconColor,
+              ),
+            ),
+            label: "Cart",
           ),
           BottomNavigationBarItem(
-            icon: SVGIcon(icon: SvgPicture.asset(
-              "assets/icons/wish.svg",
-              color: currentTab == 3 ? colorPrimary : iconColor,),),
-            label: "Wish"
+            icon: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: SvgPicture.asset(
+                "assets/icons/wish.svg",
+                height: 24,
+                color: currentTab == 3 ? colorPrimary : iconColor,
+              ),
+            ),
+            label: "Wish",
           ),
         ],
       ),
     );
   }
 }
-

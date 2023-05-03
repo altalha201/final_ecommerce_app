@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../utils/application_colors.dart';
-import 'email_verification_screen.dart';
+import 'bottom_nav_bar_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 2)).then((value) {
-      Get.offAll(const EmailVerificationScreen(), transition: Transition.fadeIn);
+      Get.offAll(const BottomNavBarScreen(), transition: Transition.fadeIn);
     });
     super.initState();
   }
