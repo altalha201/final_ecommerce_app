@@ -18,7 +18,7 @@ class WishListTab extends StatelessWidget {
             crossAxisCount: 3,
             crossAxisSpacing: 0,
             mainAxisSpacing: 0,
-            childAspectRatio: 0.75,
+            childAspectRatio: 0.70,
           ),
           itemCount: 3,
           itemBuilder: (context, index) {
