@@ -8,12 +8,12 @@ class CategoryItem extends StatelessWidget {
     Key? key,
     required this.iconData,
     required this.labelString,
-    required this.onTap,
+    this.onTap,
   }) : super(key: key);
 
   final IconData iconData;
   final String labelString;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +24,16 @@ class CategoryItem extends StatelessWidget {
         padding: const EdgeInsets.all(2.0),
         child: Column(
           children: [
-            SizedBox(
-              width: double.infinity,
-              height: 75,
-              child: Card(
-                color: colorSecondary,
-                elevation: 0,
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Icon(
-                    iconData,
-                    size: 48,
-                    color: colorPrimary,
-                  ),
+            Container(
+              decoration: BoxDecoration(
+                  color: colorPrimary.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8)),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Icon(
+                  iconData,
+                  size: 28,
+                  color: colorPrimary,
                 ),
               ),
             ),

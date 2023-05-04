@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../utils/application_colors.dart';
-import '../../widgets/appbar_icon_button.dart';
+import '../../widgets/home_screen_widgets/appbar_icon_button.dart';
+import '../../widgets/home_screen_widgets/home_carousel_slider.dart';
+import '../../widgets/home_screen_widgets/remark_title.dart';
+import '../../widgets/home_screen_widgets/search_text_field.dart';
 import '../../widgets/space.dart';
 
 class HomeTab extends StatelessWidget {
@@ -36,24 +38,14 @@ class HomeTab extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextFormField(
-              decoration: InputDecoration(
-                hintText: "Search",
-                fillColor: colorGrayLite,
-                filled: true,
-                enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: colorGrayLite),
-                    borderRadius: BorderRadius.circular(8.0)),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: colorGrayLite),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                contentPadding: const EdgeInsets.all(16.0),
-                prefixIcon: const Icon(Icons.search),
-                prefixIconColor: colorPrimary,
-              ),
-            ),
+            const SearchTextField(),
             verticalSpace(16.0),
+            HomeCarouselSlider(),
+            verticalSpace(8.0),
+            RemarkTitle(
+              label: 'All Categories',
+              onSeeAllTap: () {},
+            ),
           ],
         ),
       ),
