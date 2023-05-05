@@ -38,9 +38,9 @@ class ProductListItem extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
                 child: Text(
                   "New Year Special Shoe 30",
-                  maxLines: 2,
+                  maxLines: 3,
                   textAlign: TextAlign.start,
-                  style: TextStyle(fontSize: 9),
+                  style: TextStyle(fontSize: 12),
                 ),
               ),
               Padding(
