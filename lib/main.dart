@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'ui/screens/splash_screen.dart';
+import 'ui/state_manager/bottom_navigation_bar_controller.dart';
 import 'ui/utils/application_colors.dart';
 
 void main() {
@@ -27,6 +28,8 @@ class CraftyBay extends StatelessWidget {
               fontWeight: FontWeight.w500,
               letterSpacing: 0.5,
             ),
+            titleSpacing: -8.0,
+            iconTheme: IconThemeData(color: appbarTextColor),
             systemOverlayStyle:
                 SystemUiOverlayStyle(statusBarColor: colorPrimary),
           ),
@@ -56,6 +59,14 @@ class CraftyBay extends StatelessWidget {
                   borderSide:
                       const BorderSide(color: colorPrimary, width: 2)))),
       home: const SplashScreen(),
+      initialBinding: GetXBindings(),
     );
+  }
+}
+
+class GetXBindings extends Bindings {
+  @override
+  void dependencies() {
+    Get.put(BottomNavigationBarController());
   }
 }

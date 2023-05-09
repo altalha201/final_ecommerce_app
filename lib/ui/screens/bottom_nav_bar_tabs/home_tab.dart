@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../widgets/category_item.dart';
 
+import '../../widgets/category_item.dart';
 import '../../widgets/home_screen_widgets/appbar_icon_button.dart';
 import '../../widgets/home_screen_widgets/home_carousel_slider.dart';
 import '../../widgets/home_screen_widgets/remark_title.dart';
 import '../../widgets/home_screen_widgets/search_text_field.dart';
 import '../../widgets/product_list_item.dart';
-import '../../widgets/space.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({Key? key}) : super(key: key);
@@ -16,23 +15,26 @@ class HomeTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-            SvgPicture.asset("assets/images/logo_nav.svg"),
-            const Spacer(),
-            AppbarIconButton(
-              iconData: Icons.person_outline,
-              onTap: () {},
-            ),
-            AppbarIconButton(
-              iconData: Icons.phone_enabled_outlined,
-              onTap: () {},
-            ),
-            AppbarIconButton(
-              iconData: Icons.notifications_active_outlined,
-              onTap: () {},
-            ),
-          ],
+        title: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Row(
+            children: [
+              SvgPicture.asset("assets/images/logo_nav.svg"),
+              const Spacer(),
+              AppbarIconButton(
+                iconData: Icons.person_outline,
+                onTap: () {},
+              ),
+              AppbarIconButton(
+                iconData: Icons.phone_enabled_outlined,
+                onTap: () {},
+              ),
+              AppbarIconButton(
+                iconData: Icons.notifications_active_outlined,
+                onTap: () {},
+              ),
+            ],
+          ),
         ),
         bottom: const PreferredSize(
           preferredSize: Size(double.infinity, 50),
@@ -48,80 +50,71 @@ class HomeTab extends StatelessWidget {
           child: Column(
             children: [
               HomeCarouselSlider(),
-              verticalSpace(8.0),
               RemarkTitle(
                 label: 'All Categories',
                 onSeeAllTap: () {},
               ),
-              SizedBox(
-                height: 84,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
                   children: const [
                     CategoryItem(iconData: Icons.tv, labelString: "Electronics"),
-                    CategoryItem(iconData: Icons.tv, labelString: "Cloths"),
-                    CategoryItem(iconData: Icons.tv, labelString: "Car"),
-                    CategoryItem(iconData: Icons.tv, labelString: "Food"),
-                    CategoryItem(iconData: Icons.tv, labelString: "Mobile"),
-                    CategoryItem(iconData: Icons.tv, labelString: "Furniture"),
+                    CategoryItem(iconData: Icons.person, labelString: "Cloths"),
+                    CategoryItem(iconData: Icons.drive_eta, labelString: "Car"),
+                    CategoryItem(iconData: Icons.emoji_food_beverage_outlined, labelString: "Food"),
+                    CategoryItem(iconData: Icons.phone_android, labelString: "Mobile"),
+                    CategoryItem(iconData: Icons.bed_outlined, labelString: "Furniture"),
                   ],
                 ),
               ),
-              verticalSpace(8.0),
               RemarkTitle(
                 label: 'Popular',
                 onSeeAllTap: () {},
               ),
-              SizedBox(
-                height: 180,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
                   children: const [
                     ProductListItem(),
                     ProductListItem(),
                     ProductListItem(),
                     ProductListItem(),
-                    ProductListItem()
+                    ProductListItem(),
                   ],
                 ),
               ),
-              verticalSpace(8.0),
               RemarkTitle(
                 label: 'Special',
                 onSeeAllTap: () {},
               ),
-              SizedBox(
-                height: 180,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
                   children: const [
                     ProductListItem(),
                     ProductListItem(),
                     ProductListItem(),
                     ProductListItem(),
-                    ProductListItem()
+                    ProductListItem(),
                   ],
                 ),
               ),
-              verticalSpace(8.0),
               RemarkTitle(
                 label: 'New',
                 onSeeAllTap: () {},
               ),
-              SizedBox(
-                height: 180,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
                   children: const [
                     ProductListItem(),
                     ProductListItem(),
                     ProductListItem(),
                     ProductListItem(),
-                    ProductListItem()
+                    ProductListItem(),
                   ],
                 ),
               ),
-
             ],
           ),
         ),

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../state_manager/bottom_navigation_bar_controller.dart';
+import '../../utils/application_colors.dart';
 import '../../widgets/category_item.dart';
 
 class CategoryTab extends StatelessWidget {
@@ -10,6 +13,13 @@ class CategoryTab extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Categories"),
+        leading: IconButton(
+          splashColor: colorPrimary.withOpacity(0.1),
+          onPressed: () {
+            Get.find<BottomNavigationBarController>().backToHome();
+          },
+          icon: const Icon(Icons.arrow_back_ios),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

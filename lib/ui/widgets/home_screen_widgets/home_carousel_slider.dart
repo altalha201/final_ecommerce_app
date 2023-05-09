@@ -67,6 +67,7 @@ class HomeCarouselSlider extends StatelessWidget {
             );
           },
         ),
+        verticalSpace(4.0),
       ],
     );
   }

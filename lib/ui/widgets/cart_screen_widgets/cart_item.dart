@@ -13,15 +13,15 @@ class CartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8.0),
+    return SizedBox(
       width: double.infinity,
       height: 150,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
-        elevation: 1,
+        elevation: 2,
+        shadowColor: colorPrimary.withOpacity(0.2),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
