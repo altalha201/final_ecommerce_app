@@ -15,7 +15,7 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 150,
+      height: 140,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
@@ -25,12 +25,13 @@ class CartItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              padding: const EdgeInsets.all(16.0),
+            SizedBox(
+              // padding: const EdgeInsets.all(16.0),
               width: 120,
-              alignment: Alignment.center,
-              child: Image.asset("assets/images/item-demo.png"),
+              // alignment: Alignment.center,
+              child: Image.asset("assets/images/dummy_shoe.jpg", fit: BoxFit.fill,),
             ),
+            verticalSpace(8.0),
             Flexible(
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),

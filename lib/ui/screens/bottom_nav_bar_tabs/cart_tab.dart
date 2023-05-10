@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../state_manager/bottom_navigation_bar_controller.dart';
 import '../../utils/application_colors.dart';
 import '../../widgets/cart_screen_widgets/cart_item.dart';
-
+import '../../widgets/floating_price_widget.dart';
 
 class CartTab extends StatelessWidget {
   const CartTab({Key? key}) : super(key: key);
@@ -22,23 +22,33 @@ class CartTab extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CartItem(),
-              CartItem(),
-              CartItem(),
-              CartItem(),
-              CartItem(),
-              CartItem(),
-              CartItem(),
-              CartItem(),
-            ],
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  CartItem(),
+                  CartItem(),
+                  CartItem(),
+                  CartItem(),
+                  CartItem(),
+                  CartItem(),
+                  CartItem(),
+                  CartItem(),
+                ],
+              ),
+            ),
           ),
-        ),
+          FloatingPriceWidget(
+            fromCart: true,
+            priceText: "100,000.00",
+            onButtonTap: () {},
+          ),
+        ],
       ),
     );
   }
 }
+
