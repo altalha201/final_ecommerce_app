@@ -28,7 +28,7 @@ class CartTab extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             child: SingleChildScrollView(
               child: Column(
-                children: [
+                children: const [
                   CartItem(),
                   CartItem(),
                   CartItem(),
