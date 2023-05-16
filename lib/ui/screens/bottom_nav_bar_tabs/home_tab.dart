@@ -1,5 +1,7 @@
+import 'package:final_ecommerce_app/ui/state_manager/bottom_navigation_bar_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../widgets/category_item.dart';
 import '../../widgets/home_screen_widgets/appbar_icon_button.dart';
@@ -52,7 +54,9 @@ class HomeTab extends StatelessWidget {
               HomeCarouselSlider(),
               RemarkTitle(
                 label: 'All Categories',
-                onSeeAllTap: () {},
+                onSeeAllTap: () {
+                  Get.find<BottomNavigationBarController>().changeIndex(1);
+                },
               ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
