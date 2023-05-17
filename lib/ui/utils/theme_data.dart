@@ -50,5 +50,8 @@ ThemeData appThemeData() {
         borderSide: const BorderSide(color: colorPrimary, width: 2),
       ),
     ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: colorPrimary
+    )
   );
 }
