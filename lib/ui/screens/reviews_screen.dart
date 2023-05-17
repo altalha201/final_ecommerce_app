@@ -1,5 +1,7 @@
+import 'package:final_ecommerce_app/ui/screens/create_review.dart';
 import 'package:final_ecommerce_app/ui/utils/application_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../widgets/reviews_screen_widgets/review_card.dart';
 
@@ -20,41 +22,47 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
           color: colorGray,
         ),
       ),
-      body: Stack(
+      body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  for (int i = 0; i < 6; i++)
-                    const ReviewCard()
-                ],
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [for (int i = 0; i < 6; i++) const ReviewCard()],
+                ),
               ),
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                height: 100,
-                decoration: const BoxDecoration(
-                  color: colorSecondary,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(25.0),
-                    topLeft: Radius.circular(25.0),
-                  )
+          Container(
+            height: 100,
+            decoration: const BoxDecoration(
+                color: colorSecondary,
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(25.0),
+                  topLeft: Radius.circular(25.0),
+                )),
+            alignment: Alignment.center,
+            child: const SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  "1000 (Reviews)",
+                  style: TextStyle(
+                    color: colorBlack,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-                alignment: Alignment.center,
-                child: Text("1000 (Reviews)",),
               ),
-            ],
-          )
+            ),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-
+          Get.to(const CreateReview());
         },
         child: const Icon(Icons.add),
       ),

@@ -1,3 +1,4 @@
+import 'package:final_ecommerce_app/ui/screens/product_list_screen.dart';
 import 'package:final_ecommerce_app/ui/state_manager/bottom_navigation_bar_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -43,7 +44,8 @@ class HomeTab extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: SearchTextField(),
-          ),),
+          ),
+        ),
         elevation: 0,
       ),
       body: Padding(
@@ -61,13 +63,23 @@ class HomeTab extends StatelessWidget {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: const [
-                    CategoryItem(iconData: Icons.tv, labelString: "Electronics"),
-                    CategoryItem(iconData: Icons.person, labelString: "Cloths"),
-                    CategoryItem(iconData: Icons.drive_eta, labelString: "Car"),
-                    CategoryItem(iconData: Icons.emoji_food_beverage_outlined, labelString: "Food"),
-                    CategoryItem(iconData: Icons.phone_android, labelString: "Mobile"),
-                    CategoryItem(iconData: Icons.bed_outlined, labelString: "Furniture"),
+                  children: [
+                    CategoryItem(
+                      iconData: Icons.tv,
+                      labelString: "Electronics",
+                      onTap: () {
+                        Get.to(const ProductListScreen(title: "Electronics"));
+                      },
+                    ),
+                    const CategoryItem(iconData: Icons.person, labelString: "Cloths"),
+                    const CategoryItem(iconData: Icons.drive_eta, labelString: "Car"),
+                    const CategoryItem(
+                        iconData: Icons.emoji_food_beverage_outlined,
+                        labelString: "Food"),
+                    const CategoryItem(
+                        iconData: Icons.phone_android, labelString: "Mobile"),
+                    const CategoryItem(
+                        iconData: Icons.bed_outlined, labelString: "Furniture"),
                   ],
                 ),
               ),
