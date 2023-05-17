@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 
 import 'ui/screens/splash_screen.dart';
 import 'ui/state_manager/bottom_navigation_bar_controller.dart';
+import 'ui/state_manager/otp_expire_timer_controller.dart';
+import 'ui/state_manager/user_auth_controller.dart';
 import 'ui/utils/theme_data.dart';
 
 void main() {
@@ -28,5 +30,7 @@ class GetXBindings extends Bindings {
   @override
   void dependencies() {
     Get.put(BottomNavigationBarController());
+    Get.put(UserAuthController());
+    Get.put(OTPExpireTimerController());
   }
 }

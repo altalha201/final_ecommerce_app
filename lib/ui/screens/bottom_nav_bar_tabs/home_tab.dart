@@ -1,15 +1,16 @@
-import 'package:final_ecommerce_app/ui/screens/product_list_screen.dart';
-import 'package:final_ecommerce_app/ui/state_manager/bottom_navigation_bar_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../state_manager/bottom_navigation_bar_controller.dart';
 import '../../widgets/category_item.dart';
 import '../../widgets/home_screen_widgets/appbar_icon_button.dart';
 import '../../widgets/home_screen_widgets/home_carousel_slider.dart';
 import '../../widgets/home_screen_widgets/remark_title.dart';
 import '../../widgets/home_screen_widgets/search_text_field.dart';
 import '../../widgets/product_list_item.dart';
+import '../email_verification_screen.dart';
+import '../product_list_screen.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({Key? key}) : super(key: key);
@@ -26,11 +27,14 @@ class HomeTab extends StatelessWidget {
               const Spacer(),
               AppbarIconButton(
                 iconData: Icons.person_outline,
-                onTap: () {},
+                onTap: () {
+                  Get.to(const EmailVerificationScreen());
+                },
               ),
               AppbarIconButton(
                 iconData: Icons.phone_enabled_outlined,
-                onTap: () {},
+                onTap: () {
+                },
               ),
               AppbarIconButton(
                 iconData: Icons.notifications_active_outlined,

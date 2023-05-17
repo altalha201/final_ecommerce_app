@@ -5,6 +5,10 @@ import 'application_colors.dart';
 
 ThemeData appThemeData() {
   return ThemeData(
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: colorPrimary,
+      primary: colorPrimary,
+    ),
     appBarTheme: const AppBarTheme(
       color: colorWhite,
       elevation: 1,
@@ -16,8 +20,7 @@ ThemeData appThemeData() {
       ),
       titleSpacing: -8.0,
       iconTheme: IconThemeData(color: appbarTextColor),
-      systemOverlayStyle:
-      SystemUiOverlayStyle(statusBarColor: colorPrimary),
+      systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: colorPrimary),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -25,8 +28,7 @@ ThemeData appThemeData() {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
-        padding:
-        const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
         textStyle: const TextStyle(
             fontWeight: FontWeight.w500, letterSpacing: 0.5, fontSize: 18),
       ),
@@ -42,16 +44,19 @@ ThemeData appThemeData() {
         borderRadius: BorderRadius.circular(8.0),
       ),
       errorBorder: OutlineInputBorder(
-        borderSide: const BorderSide(width: 2),
+        borderSide: const BorderSide(width: 2, color: Colors.red),
         borderRadius: BorderRadius.circular(8.0),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8.0),
         borderSide: const BorderSide(color: colorPrimary, width: 2),
       ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8.0),
+        borderSide: const BorderSide(color: Colors.red, width: 2),
+      ),
     ),
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: colorPrimary
-    )
+    floatingActionButtonTheme:
+        const FloatingActionButtonThemeData(backgroundColor: colorPrimary),
   );
 }
