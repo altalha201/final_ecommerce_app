@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:http/http.dart';
 
+import '../../ui/state_manager/auth_controller.dart';
 import '../models/request_model.dart';
 import '../utils/urls.dart';
 
@@ -13,7 +14,11 @@ class NetworkCaller {
     try {
       final Response response = await get(
         Uri.parse(Urls.baseUrl + url),
-        headers: {'Content-type': 'application/json'},
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+          'token' : AuthController.token.toString(),
+        },
       );
       log(response.body);
 
@@ -37,4 +42,5 @@ class NetworkCaller {
           statusCode: -1, isSuccess: false, returnData: e.toString());
     }
   }
+
 }

@@ -23,6 +23,6 @@ class OTPExpireTimerController extends GetxController {
   void resetCountDown() {
     countdownTimer!.cancel();
     _expireDuration = const Duration(seconds: 120);
-    update();
+    startCountdown();
   }
 }

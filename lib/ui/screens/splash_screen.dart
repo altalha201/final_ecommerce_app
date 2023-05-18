@@ -1,3 +1,5 @@
+import 'package:final_ecommerce_app/ui/screens/email_verification_screen.dart';
+import 'package:final_ecommerce_app/ui/state_manager/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -16,10 +18,15 @@ class _SplashScreenState extends State<SplashScreen> {
   
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 2)).then((value) {
-      Get.offAll(const BottomNavBarScreen(), transition: Transition.fadeIn);
-    });
     super.initState();
+    Future.delayed(const Duration(seconds: 1)).then((value) async {
+      final bool loginState = await Get.find<AuthController>().isLoggedIn();
+      if (loginState) {
+        Get.off(const BottomNavBarScreen());
+      } else {
+        Get.off(const EmailVerificationScreen());
+      }
+    });
   }
   
   @override

@@ -1,3 +1,5 @@
+import 'package:final_ecommerce_app/ui/screens/profile_screen.dart';
+import 'package:final_ecommerce_app/ui/state_manager/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -28,7 +30,13 @@ class HomeTab extends StatelessWidget {
               AppbarIconButton(
                 iconData: Icons.person_outline,
                 onTap: () {
-                  Get.to(const EmailVerificationScreen());
+                  Get.find<AuthController>().isLoggedIn().then((value) {
+                    if (value) {
+                      Get.to(const ProfileScreen());
+                    } else {
+                      Get.to(const EmailVerificationScreen());
+                    }
+                  });
                 },
               ),
               AppbarIconButton(

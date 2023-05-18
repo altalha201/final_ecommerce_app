@@ -1,3 +1,5 @@
+import 'package:final_ecommerce_app/ui/screens/complete_profile_screen.dart';
+import 'package:final_ecommerce_app/ui/state_manager/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -24,7 +26,6 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     Get.find<OTPExpireTimerController>().startCountdown();
 
     return Scaffold(
@@ -75,13 +76,15 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                         if (response) {
                           Get.offAll(const BottomNavBarScreen());
                         } else {
-                          Get.showSnackbar(
-                              const GetSnackBar(
-                                title: "Failed",
-                                message: "Check once again before enter your otp",
-                                duration: Duration(seconds: 3),
-                              )
-                          );
+                          if(AuthController.token != null) {
+                            Get.to(const CompleteProfileScreen());
+                          } else {
+                            Get.showSnackbar(const GetSnackBar(
+                              title: "Failed",
+                              message: "Check once again before enter your otp",
+                              duration: Duration(seconds: 3),
+                            ));
+                          }
                         }
                       },
                       child: const Text("Next"),
@@ -89,34 +92,49 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                   ),
                   child: const CircularProgressIndicator()),
               verticalSpace(24.0),
-              GetBuilder<OTPExpireTimerController>(
-                builder: (timerController) {
-                  return RichText(
-                    text: TextSpan(
-                      text: "This code will expire in ",
-                      style: const TextStyle(fontSize: 13, color: colorGray),
-                      children: [
-                        TextSpan(
-                          text: " ${timerController.duration.inSeconds} s",
-                          style: const TextStyle(
-                            color: colorPrimary,
-                            fontWeight: FontWeight.w600,
-                          ),
+              GetBuilder<OTPExpireTimerController>(builder: (timerController) {
+                return RichText(
+                  text: TextSpan(
+                    text: "This code will expire in ",
+                    style: const TextStyle(fontSize: 13, color: colorGray),
+                    children: [
+                      TextSpan(
+                        text: " ${timerController.duration.inSeconds} s",
+                        style: const TextStyle(
+                          color: colorPrimary,
+                          fontWeight: FontWeight.w600,
                         ),
-                      ],
-                    ),
-                  );
-                }
-              ),
+                      ),
+                    ],
+                  ),
+                );
+              }),
               verticalSpace(2.0),
               TextButton(
-                  onPressed: () {
+                onPressed: () async {
+                  final bool response = await Get.find<UserAuthController>()
+                      .emailVerification(widget.email);
+
+                  if (response) {
+                    Get.showSnackbar(const GetSnackBar(
+                      title: "OTP send",
+                      message: "A new OTP sent to your email",
+                      duration: Duration(seconds: 3),
+                    ));
                     Get.find<OTPExpireTimerController>().resetCountDown();
-                  },
-                  child: const Text(
-                    "Resend Code",
-                    style: TextStyle(color: colorGray),
-                  ))
+                  } else {
+                    Get.showSnackbar(const GetSnackBar(
+                      title: "Failed",
+                      message: "Go back and check your email again",
+                      duration: Duration(seconds: 3),
+                    ));
+                  }
+                },
+                child: const Text(
+                  "Resend Code",
+                  style: TextStyle(color: colorGray),
+                ),
+              ),
             ],
           ),
         );

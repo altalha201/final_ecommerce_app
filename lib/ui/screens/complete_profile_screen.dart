@@ -1,4 +1,6 @@
+import 'package:final_ecommerce_app/ui/screens/bottom_nav_bar_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../widgets/space.dart';
 import '../widgets/title_widgets.dart';
@@ -59,7 +61,9 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.offAll(const BottomNavBarScreen());
+                      },
                       child: const Text("Complete"),
                     ),
                   ),
