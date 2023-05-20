@@ -34,7 +34,8 @@ class UserAuthController extends GetxController {
     final response = await NetworkCaller.getRequest(url: '/VerifyLogin/$email/$otp');
     _pinVerificationInProgress = false;
     if (response.isSuccess) {
-      Get.find<AuthController>().saveToken(response.returnData['data']);
+      await Get.find<AuthController>().saveToken(response.returnData['data']);
+      Future.delayed(const Duration(seconds: 4));
       final bool profileDataFound = await Get.find<UserProfileController>().getProfileData();
       if (profileDataFound) {
         update();

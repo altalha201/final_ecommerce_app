@@ -11,6 +11,7 @@ import '../../widgets/home_screen_widgets/home_carousel_slider.dart';
 import '../../widgets/home_screen_widgets/remark_title.dart';
 import '../../widgets/home_screen_widgets/search_text_field.dart';
 import '../../widgets/product_list_item.dart';
+import '../complete_profile_screen.dart';
 import '../email_verification_screen.dart';
 import '../product_list_screen.dart';
 
@@ -42,6 +43,7 @@ class HomeTab extends StatelessWidget {
               AppbarIconButton(
                 iconData: Icons.phone_enabled_outlined,
                 onTap: () {
+                  Get.to(const CompleteProfileScreen());
                 },
               ),
               AppbarIconButton(

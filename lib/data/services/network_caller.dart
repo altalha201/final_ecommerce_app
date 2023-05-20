@@ -12,15 +12,18 @@ class NetworkCaller {
 
   static Future<ResponseModel> getRequest({required String url}) async {
     try {
+      log(AuthController.token.toString());
       final Response response = await get(
         Uri.parse(Urls.baseUrl + url),
         headers: {
           'Content-type': 'application/json',
           'Accept': 'application/json',
-          'token' : AuthController.token.toString(),
+          'token': AuthController.token.toString(),
         },
       );
       log(response.body);
+      log(response.statusCode.toString());
+
 
       if (response.statusCode == 200) {
         return ResponseModel(
@@ -35,7 +38,6 @@ class NetworkCaller {
           returnData: jsonDecode(response.body),
         );
       }
-
     } catch (e) {
       log(e.toString());
       return ResponseModel(
@@ -43,4 +45,34 @@ class NetworkCaller {
     }
   }
 
+  static Future<ResponseModel> postRequest({
+    required String url,
+    required Map<String, String> requestBody,
+  }) async {
+    final Response response = await post(
+      Uri.parse(Urls.baseUrl + url),
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+        'token': AuthController.token.toString(),
+      },
+      body: jsonEncode(requestBody),
+    );
+
+    log(response.body);
+
+    if (response.statusCode == 200) {
+      return ResponseModel(
+        statusCode: response.statusCode,
+        isSuccess: true,
+        returnData: response.body,
+      );
+    } else {
+      return ResponseModel(
+        statusCode: response.statusCode,
+        isSuccess: false,
+        returnData: response.body,
+      );
+    }
+  }
 }

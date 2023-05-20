@@ -58,5 +58,9 @@ ThemeData appThemeData() {
     ),
     floatingActionButtonTheme:
         const FloatingActionButtonThemeData(backgroundColor: colorPrimary),
+    iconTheme: const IconThemeData(
+      color: colorPrimary,
+      size: 24,
+    ),
   );
 }
