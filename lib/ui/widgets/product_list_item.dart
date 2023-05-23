@@ -1,7 +1,7 @@
-import 'package:final_ecommerce_app/ui/screens/product_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../screens/product_details_screen.dart';
 import '../utils/application_colors.dart';
 import 'space.dart';
 

@@ -12,7 +12,6 @@ class NetworkCaller {
 
   static Future<ResponseModel> getRequest({required String url}) async {
     try {
-      log(AuthController.token.toString());
       final Response response = await get(
         Uri.parse(Urls.baseUrl + url),
         headers: {
@@ -22,8 +21,6 @@ class NetworkCaller {
         },
       );
       log(response.body);
-      log(response.statusCode.toString());
-
 
       if (response.statusCode == 200) {
         return ResponseModel(
@@ -31,6 +28,8 @@ class NetworkCaller {
           isSuccess: true,
           returnData: jsonDecode(response.body),
         );
+      } else if (response.statusCode == 401) {
+        return getRequest(url: url);
       } else {
         return ResponseModel(
           statusCode: response.statusCode,
@@ -65,13 +64,13 @@ class NetworkCaller {
       return ResponseModel(
         statusCode: response.statusCode,
         isSuccess: true,
-        returnData: response.body,
+        returnData: jsonDecode(response.body),
       );
     } else {
       return ResponseModel(
         statusCode: response.statusCode,
         isSuccess: false,
-        returnData: response.body,
+        returnData: jsonDecode(response.body),
       );
     }
   }

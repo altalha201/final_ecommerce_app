@@ -1,11 +1,12 @@
-import 'package:final_ecommerce_app/ui/screens/reviews_screen.dart';
-import 'package:final_ecommerce_app/ui/utils/application_colors.dart';
-import 'package:final_ecommerce_app/ui/widgets/floating_price_widget.dart';
-import 'package:final_ecommerce_app/ui/widgets/item_stepper.dart';
-import 'package:final_ecommerce_app/ui/widgets/product_details_screen_widgets/product_image_carousel.dart';
-import 'package:final_ecommerce_app/ui/widgets/space.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../utils/application_colors.dart';
+import '../widgets/floating_price_widget.dart';
+import '../widgets/item_stepper.dart';
+import '../widgets/product_details_screen_widgets/product_image_carousel.dart';
+import '../widgets/space.dart';
+import 'reviews_screen.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   const ProductDetailsScreen({Key? key}) : super(key: key);

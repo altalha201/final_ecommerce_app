@@ -1,15 +1,15 @@
-import 'package:final_ecommerce_app/ui/screens/complete_profile_screen.dart';
-import 'package:final_ecommerce_app/ui/state_manager/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../state_manager/otp_expire_timer_controller.dart';
 import '../state_manager/user_auth_controller.dart';
+import '../state_manager/user_profile_controller.dart';
 import '../utils/application_colors.dart';
 import '../widgets/space.dart';
 import '../widgets/title_widgets.dart';
 import 'bottom_nav_bar_screen.dart';
+import 'complete_profile_screen.dart';
 
 class PinVerificationScreen extends StatefulWidget {
   const PinVerificationScreen({Key? key, required this.email})
@@ -73,18 +73,24 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                         final bool response =
                             await authController.pinVerification(
                                 widget.email, _pinETController.text);
-                        if (response) {
-                          Get.offAll(const BottomNavBarScreen());
-                        } else {
-                          if(AuthController.token != null) {
-                            Get.to(const CompleteProfileScreen());
+                        if(response) {
+                          Get.showSnackbar(const GetSnackBar(
+                            title: "Verification Success",
+                            message: "Your login successful. Please wait some moment.",
+                            duration: Duration(seconds: 3),
+                          ));
+                          final bool readUserData = await Get.find<UserProfileController>().getProfileData();
+                          if (readUserData) {
+                            Get.offAll(const BottomNavBarScreen());
                           } else {
-                            Get.showSnackbar(const GetSnackBar(
-                              title: "Failed",
-                              message: "Check once again before enter your otp",
-                              duration: Duration(seconds: 3),
-                            ));
+                            Get.to(const CompleteProfileScreen());
                           }
+                        } else {
+                          Get.showSnackbar(const GetSnackBar(
+                            title: "Failed",
+                            message: "Check once again before enter your otp",
+                            duration: Duration(seconds: 3),
+                          ));
                         }
                       },
                       child: const Text("Next"),

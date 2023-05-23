@@ -26,7 +26,7 @@ class AuthController extends GetxController {
 
   Future<void> saveProfileData(ProfileData profile) async {
     _profileData = profile;
-    GetStorage().write("user_profile", jsonEncode(profile).toString());
+    GetStorage().write("user_profile", jsonEncode(profile));
   }
 
   Future<void> getToken() async {
@@ -36,7 +36,7 @@ class AuthController extends GetxController {
   Future<void> getProfileData() async {
     final profileDataString = GetStorage().read("user_profile");
     if (profileDataString != null) {
-      _profileData = ProfileData.fromJson(jsonDecode(profileDataString.toString()) ?? '{}');
+      _profileData = ProfileData.fromJson(jsonDecode(profileDataString) ?? '{}');
     }
   }
 

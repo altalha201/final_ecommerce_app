@@ -1,15 +1,15 @@
 class ProfileModel {
   String? msg;
-  List<ProfileData>? profiledata;
+  List<ProfileData>? profileData;
 
-  ProfileModel({this.msg, this.profiledata});
+  ProfileModel({this.msg, this.profileData});
 
   ProfileModel.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
     if (json['data'] != null) {
-      profiledata = <ProfileData>[];
+      profileData = <ProfileData>[];
       json['data'].forEach((v) {
-        profiledata!.add(ProfileData.fromJson(v));
+        profileData!.add(ProfileData.fromJson(v));
       });
     }
   }
@@ -17,8 +17,8 @@ class ProfileModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['msg'] = msg;
-    if (profiledata != null) {
-      data['data'] = profiledata!.map((v) => v.toJson()).toList();
+    if (profileData != null) {
+      data['data'] = profileData!.map((v) => v.toJson()).toList();
     }
     return data;
   }

@@ -1,9 +1,9 @@
-import 'package:final_ecommerce_app/ui/screens/create_review.dart';
-import 'package:final_ecommerce_app/ui/utils/application_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../utils/application_colors.dart';
 import '../widgets/reviews_screen_widgets/review_card.dart';
+import 'create_review.dart';
 
 class ReviewsScreen extends StatefulWidget {
   const ReviewsScreen({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
-import 'package:final_ecommerce_app/ui/widgets/space.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/application_colors.dart';
+import '../widgets/space.dart';
 
 class CreateReview extends StatelessWidget {
   const CreateReview({Key? key}) : super(key: key);

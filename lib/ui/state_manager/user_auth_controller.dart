@@ -1,8 +1,7 @@
-import 'package:final_ecommerce_app/ui/state_manager/auth_controller.dart';
-import 'package:final_ecommerce_app/ui/state_manager/user_profile_controller.dart';
 import 'package:get/get.dart';
 
 import '../../data/services/network_caller.dart';
+import 'auth_controller.dart';
 
 class UserAuthController extends GetxController {
   bool _emailVerificationInProgress = false;
@@ -35,15 +34,8 @@ class UserAuthController extends GetxController {
     _pinVerificationInProgress = false;
     if (response.isSuccess) {
       await Get.find<AuthController>().saveToken(response.returnData['data']);
-      Future.delayed(const Duration(seconds: 4));
-      final bool profileDataFound = await Get.find<UserProfileController>().getProfileData();
-      if (profileDataFound) {
-        update();
-        return true;
-      } else {
-        update();
-        return false;
-      }
+      update();
+      return true;
     } else {
       update();
       return false;

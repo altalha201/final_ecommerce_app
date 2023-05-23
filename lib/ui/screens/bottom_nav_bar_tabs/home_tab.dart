@@ -1,9 +1,8 @@
-import 'package:final_ecommerce_app/ui/screens/profile_screen.dart';
-import 'package:final_ecommerce_app/ui/state_manager/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../state_manager/auth_controller.dart';
 import '../../state_manager/bottom_navigation_bar_controller.dart';
 import '../../widgets/category_item.dart';
 import '../../widgets/home_screen_widgets/appbar_icon_button.dart';
@@ -14,6 +13,7 @@ import '../../widgets/product_list_item.dart';
 import '../complete_profile_screen.dart';
 import '../email_verification_screen.dart';
 import '../product_list_screen.dart';
+import '../profile_screen.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class HomeTab extends StatelessWidget {
                 onTap: () {
                   Get.find<AuthController>().isLoggedIn().then((value) {
                     if (value) {
-                      Get.to(const ProfileScreen());
+                      Get.to(ProfileScreen());
                     } else {
                       Get.to(const EmailVerificationScreen());
                     }

@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:final_ecommerce_app/ui/utils/application_colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/application_colors.dart';
 
 class ProductImageCarousel extends StatelessWidget {
   ProductImageCarousel({Key? key}) : super(key: key);
@@ -56,7 +57,7 @@ class ProductImageCarousel extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: currentValue == i
                                 ? colorPrimary
-                                :colorWhite,
+                                : colorWhite,
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),

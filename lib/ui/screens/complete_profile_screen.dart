@@ -1,10 +1,10 @@
-import 'package:final_ecommerce_app/ui/screens/bottom_nav_bar_screen.dart';
-import 'package:final_ecommerce_app/ui/state_manager/user_profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../state_manager/user_profile_controller.dart';
 import '../widgets/space.dart';
 import '../widgets/title_widgets.dart';
+import 'bottom_nav_bar_screen.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
   const CompleteProfileScreen({Key? key}) : super(key: key);
