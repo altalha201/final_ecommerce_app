@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../state_manager/auth_controller.dart';
+import '../state_manager/user_profile_controller.dart';
 import '../utils/application_colors.dart';
 import '../widgets/space.dart';
 import 'bottom_nav_bar_screen.dart';
@@ -9,9 +10,9 @@ import 'bottom_nav_bar_screen.dart';
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
 
-  final TextEditingController firstNameET = TextEditingController();
-  final TextEditingController lastNameET = TextEditingController();
-  final TextEditingController shippingAddressET = TextEditingController();
+  final TextEditingController _firstNameET = TextEditingController();
+  final TextEditingController _lastNameET = TextEditingController();
+  final TextEditingController _shippingAddressET = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +25,8 @@ class ProfileScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () {
-              Get.find<AuthController>().clearUserData().then((value) {
-                Get.offAll(const BottomNavBarScreen());
-              });
+              Get.find<AuthController>().clearUserData();
+              Get.offAll(const BottomNavBarScreen());
             },
             child: const Text("Logout"),
           ),
@@ -69,49 +69,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 IconButton(
-                    onPressed: () {
-                      firstNameET.text =
-                          AuthController.profileData?.firstName ?? "";
-                      lastNameET.text =
-                          AuthController.profileData?.lastName ?? "";
-                      Get.bottomSheet(Container(
-                        height: 250,
-                        padding: const EdgeInsets.all(16.0),
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(25),
-                            topRight: Radius.circular(25),
-                          ),
-                          color: colorWhite,
-                        ),
-                        child: Column(
-                          children: [
-                            TextFormField(
-                              controller: firstNameET,
-                              decoration:
-                                  const InputDecoration(hintText: "First Name"),
-                            ),
-                            verticalSpace(8.0),
-                            TextFormField(
-                              controller: lastNameET,
-                              decoration:
-                                  const InputDecoration(hintText: "Last Name"),
-                            ),
-                            verticalSpace(8.0),
-                            SizedBox(
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: () {
-
-                                  Get.back();
-                                },
-                                child: const Text("Update"),
-                              ),
-                            )
-                          ],
-                        ),
-                      ));
-                    },
+                    onPressed: updateName,
                     icon: const Icon(
                       Icons.edit_outlined,
                       size: 18,
@@ -138,7 +96,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: updateShippingAddress,
                     icon: const Icon(
                       Icons.edit_outlined,
                       size: 18,
@@ -149,5 +107,90 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void updateName() {
+    _firstNameET.text =
+        AuthController.profileData?.firstName ?? "";
+    _lastNameET.text =
+        AuthController.profileData?.lastName ?? "";
+    Get.bottomSheet(Container(
+      height: 250,
+      padding: const EdgeInsets.all(16.0),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
+        ),
+        color: colorWhite,
+      ),
+      child: Column(
+        children: [
+          TextFormField(
+            controller: _firstNameET,
+            decoration:
+            const InputDecoration(hintText: "First Name"),
+          ),
+          verticalSpace(8.0),
+          TextFormField(
+            controller: _lastNameET,
+            decoration:
+            const InputDecoration(hintText: "Last Name"),
+          ),
+          verticalSpace(8.0),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () async {
+                await Get.find<UserProfileController>().completeProfile({
+                  "firstName": _firstNameET.text,
+                  "lastName": _lastNameET.text,
+                });
+                Get.back();
+              },
+              child: const Text("Update"),
+            ),
+          )
+        ],
+      ),
+    ));
+  }
+
+  void updateShippingAddress() {
+    _shippingAddressET.text = AuthController.profileData?.shippingAddress ?? "";
+
+    Get.bottomSheet(Container(
+      height: 250,
+      padding: const EdgeInsets.all(16.0),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
+        ),
+        color: colorWhite,
+      ),
+      child: Column(
+        children: [
+          TextFormField(
+            controller: _shippingAddressET,
+            maxLines: 5,
+            decoration: const InputDecoration(hintText: "Shipping Address"),
+          ),
+          verticalSpace(8.0),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () async {
+                await Get.find<UserProfileController>().completeProfile({
+                  "shippingAddress": _shippingAddressET.text,
+                });
+                Get.back();
+              },
+              child: const Text("Update"),
+            ),
+          )
+        ],
+      ),
+    ));
   }
 }

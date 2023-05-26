@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../../data/models/profile_data.dart';
+import '../screens/email_verification_screen.dart';
 
 class AuthController extends GetxController {
   static String? _token;
@@ -13,34 +14,46 @@ class AuthController extends GetxController {
 
   static ProfileData? get profileData => _profileData;
 
-  Future<bool> isLoggedIn() async {
-    await getToken();
-    await getProfileData();
+  bool isLoggedIn() {
+    getToken();
+    getProfileData();
     return _token != null;
   }
 
-  Future<void> saveToken(String userToken) async {
+  void saveToken(String userToken) {
     _token = userToken;
     GetStorage().write("crafty_token", _token);
   }
 
-  Future<void> saveProfileData(ProfileData profile) async {
+  void saveProfileData(ProfileData profile) {
     _profileData = profile;
     GetStorage().write("user_profile", jsonEncode(profile));
   }
 
-  Future<void> getToken() async {
+  void getToken() {
     _token = GetStorage().read("crafty_token");
   }
 
-  Future<void> getProfileData() async {
+  void getProfileData() {
     final profileDataString = GetStorage().read("user_profile");
     if (profileDataString != null) {
       _profileData = ProfileData.fromJson(jsonDecode(profileDataString) ?? '{}');
     }
   }
 
-  Future<void> clearUserData() async {
+  void clearUserData() {
     GetStorage().erase();
+    _token = null;
+  }
+
+  void logout() {
+    clearUserData();
+    Get.to(const EmailVerificationScreen());
+  }
+
+  bool checkAuthValidation() {
+    final authState = isLoggedIn();
+    Get.to(const EmailVerificationScreen());
+    return authState;
   }
 }

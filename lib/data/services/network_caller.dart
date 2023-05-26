@@ -28,8 +28,6 @@ class NetworkCaller {
           isSuccess: true,
           returnData: jsonDecode(response.body),
         );
-      } else if (response.statusCode == 401) {
-        return getRequest(url: url);
       } else {
         return ResponseModel(
           statusCode: response.statusCode,

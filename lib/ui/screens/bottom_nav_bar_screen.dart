@@ -3,14 +3,27 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../state_manager/bottom_navigation_bar_controller.dart';
+import '../state_manager/home_controller.dart';
 import '../utils/application_colors.dart';
 import 'bottom_nav_bar_tabs/cart_tab.dart';
 import 'bottom_nav_bar_tabs/category_tab.dart';
 import 'bottom_nav_bar_tabs/home_tab.dart';
 import 'bottom_nav_bar_tabs/wish_list_tab.dart';
 
-class BottomNavBarScreen extends StatelessWidget {
+class BottomNavBarScreen extends StatefulWidget {
   const BottomNavBarScreen({Key? key}) : super(key: key);
+
+  @override
+  State<BottomNavBarScreen> createState() => _BottomNavBarScreenState();
+}
+
+class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
+
+  @override
+  void initState() {
+    Get.find<HomeController>().getCarouselData();
+    super.initState();
+  }
 
   final List<Widget> _bodyWidgets = const [
     HomeTab(),

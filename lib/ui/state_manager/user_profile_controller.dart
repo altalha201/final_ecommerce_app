@@ -22,7 +22,7 @@ class UserProfileController extends GetxController {
       final ProfileModel profileModel =
           ProfileModel.fromJson(response.returnData);
       if (profileModel.profileData != null) {
-        await Get.find<AuthController>()
+        Get.find<AuthController>()
             .saveProfileData(profileModel.profileData!.first);
         update();
         return true;
@@ -31,6 +31,9 @@ class UserProfileController extends GetxController {
         return false;
       }
     } else {
+      if (response.statusCode == 401) {
+        getProfileData();
+      }
       update();
       return false;
     }

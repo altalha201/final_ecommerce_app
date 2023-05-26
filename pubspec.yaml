@@ -19,7 +19,6 @@ dependencies:
   carousel_slider: ^4.2.1
   http: ^0.13.5
   email_validator: ^2.1.17
-  shared_preferences: ^2.1.1
   get_storage: ^2.1.1
 
 dev_dependencies:

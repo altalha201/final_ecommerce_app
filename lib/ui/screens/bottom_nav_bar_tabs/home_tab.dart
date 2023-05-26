@@ -4,13 +4,13 @@ import 'package:get/get.dart';
 
 import '../../state_manager/auth_controller.dart';
 import '../../state_manager/bottom_navigation_bar_controller.dart';
+import '../../state_manager/home_controller.dart';
 import '../../widgets/category_item.dart';
 import '../../widgets/home_screen_widgets/appbar_icon_button.dart';
 import '../../widgets/home_screen_widgets/home_carousel_slider.dart';
 import '../../widgets/home_screen_widgets/remark_title.dart';
 import '../../widgets/home_screen_widgets/search_text_field.dart';
 import '../../widgets/product_list_item.dart';
-import '../complete_profile_screen.dart';
 import '../email_verification_screen.dart';
 import '../product_list_screen.dart';
 import '../profile_screen.dart';
@@ -31,19 +31,18 @@ class HomeTab extends StatelessWidget {
               AppbarIconButton(
                 iconData: Icons.person_outline,
                 onTap: () {
-                  Get.find<AuthController>().isLoggedIn().then((value) {
-                    if (value) {
-                      Get.to(ProfileScreen());
-                    } else {
-                      Get.to(const EmailVerificationScreen());
-                    }
-                  });
+                  final bool login = Get.find<AuthController>().isLoggedIn();
+                  if (login) {
+                    Get.to(ProfileScreen());
+                  } else {
+                    Get.to(const EmailVerificationScreen());
+                  }
                 },
               ),
               AppbarIconButton(
                 iconData: Icons.phone_enabled_outlined,
                 onTap: () {
-                  Get.to(const CompleteProfileScreen());
+                  // Get.to(const CompleteProfileScreen());
                 },
               ),
               AppbarIconButton(
@@ -67,7 +66,21 @@ class HomeTab extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              HomeCarouselSlider(),
+              GetBuilder<HomeController>(
+                builder: (homeController) {
+                  if (homeController.getSliderInProgress) {
+                    return const SizedBox(
+                      height: 180,
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  }
+                  return HomeCarouselSlider(
+                    model: homeController.homeSliderData,
+                  );
+                }
+              ),
               RemarkTitle(
                 label: 'All Categories',
                 onSeeAllTap: () {

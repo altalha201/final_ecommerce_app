@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 import '../../data/services/network_caller.dart';
 import 'auth_controller.dart';
+import 'user_profile_controller.dart';
 
 class UserAuthController extends GetxController {
   bool _emailVerificationInProgress = false;
@@ -33,9 +34,15 @@ class UserAuthController extends GetxController {
     final response = await NetworkCaller.getRequest(url: '/VerifyLogin/$email/$otp');
     _pinVerificationInProgress = false;
     if (response.isSuccess) {
-      await Get.find<AuthController>().saveToken(response.returnData['data']);
-      update();
-      return true;
+      Get.find<AuthController>().saveToken(response.returnData['data']);
+      final readProfileResponse = await Get.find<UserProfileController>().getProfileData();
+      if (readProfileResponse) {
+        update();
+        return true;
+      } else {
+        update();
+        return true;
+      }
     } else {
       update();
       return false;

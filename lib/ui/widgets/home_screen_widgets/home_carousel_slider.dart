@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:final_ecommerce_app/data/models/home_slider_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/application_colors.dart';
@@ -6,9 +7,10 @@ import '../space.dart';
 
 class HomeCarouselSlider extends StatelessWidget {
   HomeCarouselSlider({
-    Key? key,
+    Key? key, required this.model,
   }) : super(key: key);
 
+  final HomeSliderModel model;
   final ValueNotifier<int> _currentCarouselIndex = ValueNotifier(0);
 
   @override
@@ -24,7 +26,7 @@ class HomeCarouselSlider extends StatelessWidget {
               _currentCarouselIndex.value = index;
             },
           ),
-          items: [1, 2, 3, 4, 5].map((i) {
+          items: model.sliders!.map((slider) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
@@ -34,11 +36,13 @@ class HomeCarouselSlider extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: colorPrimary,
                       borderRadius: BorderRadius.circular(8.0),
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          slider.image ?? ""
+                        )
+                      )
                     ),
-                    child: Text(
-                      'text $i',
-                      style: const TextStyle(fontSize: 16.0),
-                    ));
+                );
               },
             );
           }).toList(),
@@ -50,7 +54,7 @@ class HomeCarouselSlider extends StatelessWidget {
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                for (var i = 0; i < 5; i++)
+                for (var i = 0; i < model.sliders!.length; i++)
                   Padding(
                     padding: const EdgeInsets.all(2.0),
                     child: Container(
