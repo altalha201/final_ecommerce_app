@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../state_manager/bottom_navigation_bar_controller.dart';
+import '../state_manager/category_controller.dart';
 import '../state_manager/home_controller.dart';
 import '../utils/application_colors.dart';
 import 'bottom_nav_bar_tabs/cart_tab.dart';
@@ -22,6 +23,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
   @override
   void initState() {
     Get.find<HomeController>().getCarouselData();
+    Get.find<CategoryController>().getCategories();
     super.initState();
   }
 

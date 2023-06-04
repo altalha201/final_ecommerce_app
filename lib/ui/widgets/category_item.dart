@@ -6,13 +6,14 @@ import 'space.dart';
 class CategoryItem extends StatelessWidget {
   const CategoryItem({
     Key? key,
-    required this.iconData,
     required this.labelString,
     this.onTap,
+    required this.imageUrl,
+    required this.id,
   }) : super(key: key);
 
-  final IconData iconData;
-  final String labelString;
+  final String labelString, imageUrl;
+  final int id;
   final VoidCallback? onTap;
 
   @override
@@ -27,15 +28,16 @@ class CategoryItem extends StatelessWidget {
           child: Column(
             children: [
               Container(
+                height: 50,
+                width: 50,
                 decoration: BoxDecoration(
-                    color: colorPrimary.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(8)),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Icon(
-                    iconData,
-                    size: 28,
-                    color: colorPrimary,
+                  color: colorPrimary.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(8),
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        imageUrl,
+                    ),
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
               ),

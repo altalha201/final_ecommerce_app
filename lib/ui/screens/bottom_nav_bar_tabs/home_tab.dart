@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../state_manager/auth_controller.dart';
 import '../../state_manager/bottom_navigation_bar_controller.dart';
+import '../../state_manager/category_controller.dart';
 import '../../state_manager/home_controller.dart';
 import '../../widgets/category_item.dart';
 import '../../widgets/home_screen_widgets/appbar_icon_button.dart';
@@ -12,7 +13,6 @@ import '../../widgets/home_screen_widgets/remark_title.dart';
 import '../../widgets/home_screen_widgets/search_text_field.dart';
 import '../../widgets/product_list_item.dart';
 import '../email_verification_screen.dart';
-import '../product_list_screen.dart';
 import '../profile_screen.dart';
 
 class HomeTab extends StatelessWidget {
@@ -65,6 +65,7 @@ class HomeTab extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GetBuilder<HomeController>(
                 builder: (homeController) {
@@ -87,28 +88,26 @@ class HomeTab extends StatelessWidget {
                   Get.find<BottomNavigationBarController>().changeIndex(1);
                 },
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    CategoryItem(
-                      iconData: Icons.tv,
-                      labelString: "Electronics",
-                      onTap: () {
-                        Get.to(const ProductListScreen(title: "Electronics"));
-                      },
-                    ),
-                    const CategoryItem(iconData: Icons.person, labelString: "Cloths"),
-                    const CategoryItem(iconData: Icons.drive_eta, labelString: "Car"),
-                    const CategoryItem(
-                        iconData: Icons.emoji_food_beverage_outlined,
-                        labelString: "Food"),
-                    const CategoryItem(
-                        iconData: Icons.phone_android, labelString: "Mobile"),
-                    const CategoryItem(
-                        iconData: Icons.bed_outlined, labelString: "Furniture"),
-                  ],
-                ),
+              GetBuilder<CategoryController>(
+                  builder: (categoryController) {
+                    if(categoryController.getCategoriesInProgress) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: categoryController.categoryModel.categories!.map(
+                                (e) => CategoryItem(
+                                    labelString: e.categoryName.toString(),
+                                    imageUrl: e.categoryImg.toString(),
+                                    id: e.id ?? 0,
+                                )).toList(),
+                      ),
+                    );
+                  }
               ),
               RemarkTitle(
                 label: 'Popular',
