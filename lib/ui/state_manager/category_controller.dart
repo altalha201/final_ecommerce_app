@@ -1,15 +1,15 @@
 import 'package:get/get.dart';
 
-import '../../data/models/category_model.dart';
+import '../../data/models/category_models/category_list_model.dart';
 import '../../data/services/network_caller.dart';
 
 class CategoryController extends GetxController {
   bool _getCategoriesInProgress = false;
-  CategoryModel _categoryModel = CategoryModel();
+  CategoryListModel _categoryListModel = CategoryListModel();
 
   bool get getCategoriesInProgress => _getCategoriesInProgress;
 
-  CategoryModel get categoryModel => _categoryModel;
+  CategoryListModel get categoryListModel => _categoryListModel;
 
   Future<bool> getCategories() async {
     _getCategoriesInProgress = true;
@@ -17,7 +17,7 @@ class CategoryController extends GetxController {
     final response = await NetworkCaller.getRequest(url: '/CategoryList');
     _getCategoriesInProgress = false;
     if(response.isSuccess) {
-      _categoryModel = CategoryModel.fromJson(response.returnData);
+      _categoryListModel = CategoryListModel.fromJson(response.returnData);
       update();
       return true;
     } else {

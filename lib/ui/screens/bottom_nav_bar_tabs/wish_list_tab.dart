@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../state_manager/bottom_navigation_bar_controller.dart';
 import '../../utils/application_colors.dart';
-import '../../widgets/product_list_item.dart';
 
 class WishListTab extends StatelessWidget {
   const WishListTab({Key? key}) : super(key: key);
@@ -32,7 +31,7 @@ class WishListTab extends StatelessWidget {
           ),
           itemCount: 3,
           itemBuilder: (context, index) {
-            return const ProductListItem();
+            return Container();
           },
         ),
       ),

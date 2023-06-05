@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../data/models/product_models/product.dart';
 import '../screens/product_details_screen.dart';
 import '../utils/application_colors.dart';
 import 'space.dart';
 
 class ProductListItem extends StatelessWidget {
   const ProductListItem({
-    Key? key,
+    Key? key, required this.product,
   }) : super(key: key);
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -28,18 +31,18 @@ class ProductListItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-                'assets/images/dummy_shoe.jpg',
+              Image.network(
+                product.image ?? '',
                 width: 132,
                 height: 90,
-                fit: BoxFit.cover,
+                fit: BoxFit.scaleDown,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
                     Text(
-                      'Nike Casual Shoe A345G',
+                      product.title ?? 'Unknown',
                       maxLines: 3,
                       textAlign: TextAlign.start,
                       style: TextStyle(
@@ -53,24 +56,24 @@ class ProductListItem extends StatelessWidget {
                     verticalSpace(4.0),
                     Row(
                       children: [
-                        const Text(
-                          "\$100",
-                          style: TextStyle(
+                        Text(
+                          "\$ ${product.price}",
+                          style: const TextStyle(
                               fontSize: 12,
                               color: colorPrimary,
                               fontWeight: FontWeight.w500),
                         ),
                         horizontalSpace(4.0),
                         Wrap(
-                          children: const [
-                            Icon(
+                          children: [
+                            const Icon(
                               Icons.star,
                               color: Colors.amber,
                               size: 14,
                             ),
                             Text(
-                              '4.5',
-                              style: TextStyle(
+                              '${product.star ?? 0}',
+                              style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
                                 color: colorGray,

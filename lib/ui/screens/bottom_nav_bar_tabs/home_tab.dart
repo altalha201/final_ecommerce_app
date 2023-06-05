@@ -11,7 +11,6 @@ import '../../widgets/home_screen_widgets/appbar_icon_button.dart';
 import '../../widgets/home_screen_widgets/home_carousel_slider.dart';
 import '../../widgets/home_screen_widgets/remark_title.dart';
 import '../../widgets/home_screen_widgets/search_text_field.dart';
-import '../../widgets/product_list_item.dart';
 import '../email_verification_screen.dart';
 import '../profile_screen.dart';
 
@@ -99,7 +98,7 @@ class HomeTab extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: categoryController.categoryModel.categories!.map(
+                        children: categoryController.categoryListModel.categories!.map(
                                 (e) => CategoryItem(
                                     labelString: e.categoryName.toString(),
                                     imageUrl: e.categoryImg.toString(),
@@ -116,12 +115,12 @@ class HomeTab extends StatelessWidget {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: const [
-                    ProductListItem(),
-                    ProductListItem(),
-                    ProductListItem(),
-                    ProductListItem(),
-                    ProductListItem(),
+                  children: [
+                    Container(),
+                    Container(),
+                    Container(),
+                    Container(),
+                    Container(),
                   ],
                 ),
               ),
@@ -132,12 +131,12 @@ class HomeTab extends StatelessWidget {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: const [
-                    ProductListItem(),
-                    ProductListItem(),
-                    ProductListItem(),
-                    ProductListItem(),
-                    ProductListItem(),
+                  children: [
+                    Container(),
+                    Container(),
+                    Container(),
+                    Container(),
+                    Container(),
                   ],
                 ),
               ),
@@ -148,12 +147,12 @@ class HomeTab extends StatelessWidget {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: const [
-                    ProductListItem(),
-                    ProductListItem(),
-                    ProductListItem(),
-                    ProductListItem(),
-                    ProductListItem(),
+                  children: [
+                    Container(),
+                    Container(),
+                    Container(),
+                    Container(),
+                    Container(),
                   ],
                 ),
               ),

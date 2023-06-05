@@ -26,21 +26,26 @@ class CategoryTab extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: GetBuilder<CategoryController>(
           builder: (categoryController) {
-            return GridView.builder(
-                itemCount: categoryController.categoryModel.categories?.length ?? 0,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    crossAxisSpacing: 0,
-                    mainAxisSpacing: 0,
-                    childAspectRatio: 0.85),
-                itemBuilder: (context, index) {
-                  final item = categoryController.categoryModel.categories!.elementAt(index);
-                  return CategoryItem(
-                      labelString: item.categoryName ?? "",
-                      imageUrl: item.categoryImg ?? "",
-                      id: item.id ?? 0,
-                  );
-                });
+            return RefreshIndicator(
+              onRefresh: () async {
+                Get.find<CategoryController>().getCategories();
+              },
+              child: GridView.builder(
+                  itemCount: categoryController.categoryListModel.categories?.length ?? 0,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      crossAxisSpacing: 0,
+                      mainAxisSpacing: 0,
+                      childAspectRatio: 0.85),
+                  itemBuilder: (context, index) {
+                    final item = categoryController.categoryListModel.categories!.elementAt(index);
+                    return CategoryItem(
+                        labelString: item.categoryName ?? "",
+                        imageUrl: item.categoryImg ?? "",
+                        id: item.id ?? 0,
+                    );
+                  }),
+            );
           },
         ),
       ),

@@ -1,12 +1,12 @@
 import 'category.dart';
 
-class CategoryModel {
+class CategoryListModel {
   String? msg;
   List<Category>? categories;
 
-  CategoryModel({this.msg, this.categories});
+  CategoryListModel({this.msg, this.categories});
 
-  CategoryModel.fromJson(Map<String, dynamic> json) {
+  CategoryListModel.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
     if (json['data'] != null) {
       categories = <Category>[];
