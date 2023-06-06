@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../state_manager/auth_controller.dart';
+import '../../state_manager/list_states/brand_list_controller.dart';
+import '../../state_manager/user_states/auth_controller.dart';
 import '../../state_manager/bottom_navigation_bar_controller.dart';
-import '../../state_manager/category_controller.dart';
+import '../../state_manager/list_states/category_list_controller.dart';
 import '../../state_manager/home_controller.dart';
+import '../../widgets/brand_item.dart';
 import '../../widgets/category_item.dart';
 import '../../widgets/home_screen_widgets/appbar_icon_button.dart';
 import '../../widgets/home_screen_widgets/home_carousel_slider.dart';
@@ -87,7 +89,7 @@ class HomeTab extends StatelessWidget {
                   Get.find<BottomNavigationBarController>().changeIndex(1);
                 },
               ),
-              GetBuilder<CategoryController>(
+              GetBuilder<CategoryListController>(
                   builder: (categoryController) {
                     if(categoryController.getCategoriesInProgress) {
                       return const Center(
@@ -100,10 +102,25 @@ class HomeTab extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: categoryController.categoryListModel.categories!.map(
                                 (e) => CategoryItem(
-                                    labelString: e.categoryName.toString(),
-                                    imageUrl: e.categoryImg.toString(),
-                                    id: e.id ?? 0,
+                                    categoryItem: e,
                                 )).toList(),
+                      ),
+                    );
+                  }
+              ),
+              RemarkTitle(label: 'Brands With Us', onSeeAllTap: () {}),
+              GetBuilder<BrandListController>(
+                  builder: (brandListController) {
+                    if(brandListController.getBrandsInProgress) {
+                      return const Center(child: CircularProgressIndicator(),);
+                    }
+                    return SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: brandListController.brandListModel.brands!.map(
+                                (e) => BrandCard(brandItem: e)
+                        ).toList(),
                       ),
                     );
                   }

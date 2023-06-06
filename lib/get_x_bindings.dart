@@ -1,13 +1,14 @@
 import 'package:get/get.dart';
 
-import 'ui/state_manager/auth_controller.dart';
+import 'ui/state_manager/list_states/brand_list_controller.dart';
+import 'ui/state_manager/user_states/auth_controller.dart';
 import 'ui/state_manager/bottom_navigation_bar_controller.dart';
-import 'ui/state_manager/category_controller.dart';
+import 'ui/state_manager/list_states/category_list_controller.dart';
 import 'ui/state_manager/home_controller.dart';
 import 'ui/state_manager/otp_expire_timer_controller.dart';
-import 'ui/state_manager/product_list_controller.dart';
-import 'ui/state_manager/user_auth_controller.dart';
-import 'ui/state_manager/user_profile_controller.dart';
+import 'ui/state_manager/product_states/product_list_controller.dart';
+import 'ui/state_manager/user_states/user_auth_controller.dart';
+import 'ui/state_manager/user_states/user_profile_controller.dart';
 
 class GetXBindings extends Bindings {
   @override
@@ -18,7 +19,8 @@ class GetXBindings extends Bindings {
     Get.put(AuthController());
     Get.put(UserProfileController());
     Get.put(HomeController());
-    Get.put(CategoryController());
+    Get.put(CategoryListController());
     Get.put(ProductListController());
+    Get.put(BrandListController());
   }
 }

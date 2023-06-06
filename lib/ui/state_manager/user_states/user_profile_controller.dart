@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../../data/models/profile_data.dart';
-import '../../data/services/network_caller.dart';
+import '../../../data/models/profile_data.dart';
+import '../../../data/services/network_caller.dart';
 import 'auth_controller.dart';
 
 class UserProfileController extends GetxController {

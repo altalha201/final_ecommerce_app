@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../data/models/profile_data.dart';
-import '../screens/email_verification_screen.dart';
+import '../../../data/models/profile_data.dart';
+import '../../screens/email_verification_screen.dart';
 
 class AuthController extends GetxController {
   static String? _token;

@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
-import '../../data/models/product_models/products_by_brand_model.dart';
-import '../../data/models/product_models/products_by_category_model.dart';
-import '../../data/services/network_caller.dart';
+import '../../../data/models/product_models/products_by_brand_model.dart';
+import '../../../data/models/product_models/products_by_category_model.dart';
+import '../../../data/services/network_caller.dart';
 
 class ProductListController extends GetxController {
   bool _gettingProductList = false;

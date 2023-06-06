@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../state_manager/product_list_controller.dart';
+import '../state_manager/product_states/product_list_controller.dart';
 import '../utils/application_colors.dart';
 import '../widgets/product_list_item.dart';
 

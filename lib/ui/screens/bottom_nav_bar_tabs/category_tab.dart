@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../state_manager/bottom_navigation_bar_controller.dart';
-import '../../state_manager/category_controller.dart';
+import '../../state_manager/list_states/category_list_controller.dart';
 import '../../utils/application_colors.dart';
 import '../../widgets/category_item.dart';
 
@@ -24,11 +24,11 @@ class CategoryTab extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: GetBuilder<CategoryController>(
+        child: GetBuilder<CategoryListController>(
           builder: (categoryController) {
             return RefreshIndicator(
               onRefresh: () async {
-                Get.find<CategoryController>().getCategories();
+                Get.find<CategoryListController>().getCategories();
               },
               child: GridView.builder(
                   itemCount: categoryController.categoryListModel.categories?.length ?? 0,
@@ -38,11 +38,8 @@ class CategoryTab extends StatelessWidget {
                       mainAxisSpacing: 0,
                       childAspectRatio: 0.85),
                   itemBuilder: (context, index) {
-                    final item = categoryController.categoryListModel.categories!.elementAt(index);
                     return CategoryItem(
-                        labelString: item.categoryName ?? "",
-                        imageUrl: item.categoryImg ?? "",
-                        id: item.id ?? 0,
+                      categoryItem: categoryController.categoryListModel.categories!.elementAt(index)
                     );
                   }),
             );

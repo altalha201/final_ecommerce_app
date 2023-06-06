@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:http/http.dart';
 
-import '../../ui/state_manager/auth_controller.dart';
+import '../../ui/state_manager/user_states/auth_controller.dart';
 import '../models/request_model.dart';
 import '../utils/urls.dart';
 

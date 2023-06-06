@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../state_manager/auth_controller.dart';
+import '../state_manager/user_states/auth_controller.dart';
 import '../state_manager/otp_expire_timer_controller.dart';
-import '../state_manager/user_auth_controller.dart';
+import '../state_manager/user_states/user_auth_controller.dart';
 import '../utils/application_colors.dart';
 import '../widgets/space.dart';
 import '../widgets/title_widgets.dart';

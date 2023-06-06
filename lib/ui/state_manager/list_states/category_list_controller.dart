@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
-import '../../data/models/category_models/category_list_model.dart';
-import '../../data/services/network_caller.dart';
+import '../../../data/models/category_models/category_list_model.dart';
+import '../../../data/services/network_caller.dart';
 
-class CategoryController extends GetxController {
+class CategoryListController extends GetxController {
   bool _getCategoriesInProgress = false;
   CategoryListModel _categoryListModel = CategoryListModel();
 

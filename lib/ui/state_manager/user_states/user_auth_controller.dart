@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../data/services/network_caller.dart';
+import '../../../data/services/network_caller.dart';
 import 'auth_controller.dart';
 import 'user_profile_controller.dart';
 

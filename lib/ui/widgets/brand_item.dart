@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../data/models/category_models/category.dart';
+import '../../data/models/brand_models/brand.dart';
 import '../screens/product_list_screen.dart';
 import '../utils/application_colors.dart';
-import 'space.dart';
 
-class CategoryItem extends StatelessWidget {
-  const CategoryItem({
-    Key? key, required this.categoryItem,
-  }) : super(key: key);
+class BrandCard extends StatelessWidget {
+  const BrandCard({Key? key, required this.brandItem}) : super(key: key);
 
-  final Category categoryItem;
+  final Brand brandItem;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +17,9 @@ class CategoryItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Get.to(ProductListScreen(
-            listByCategory: true,
-            categoryID: categoryItem.id,
-            title: categoryItem.categoryName ?? '',
+            listByCategory: false,
+            title: brandItem.brandName ?? '',
+            brandID: brandItem.id,
           ));
         },
         borderRadius: BorderRadius.circular(8.0),
@@ -37,18 +34,11 @@ class CategoryItem extends StatelessWidget {
                   color: colorPrimary.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(8),
                   image: DecorationImage(
-                    image: NetworkImage(
-                      categoryItem.categoryImg ?? '',
-                    ),
-                    fit: BoxFit.scaleDown,
+                    image: NetworkImage(brandItem.brandImg ?? ''),
                   ),
                 ),
               ),
-              verticalSpace(4.0),
-              Text(
-                categoryItem.categoryName ?? '',
-                style: const TextStyle(color: colorPrimary),
-              ),
+              Text(brandItem.brandName ?? 'Unknown'),
             ],
           ),
         ),
