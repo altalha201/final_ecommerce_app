@@ -1,3 +1,4 @@
+import 'package:final_ecommerce_app/ui/state_manager/product_states/product_details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,38 +10,27 @@ import '../widgets/space.dart';
 import 'reviews_screen.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({Key? key}) : super(key: key);
+  const ProductDetailsScreen({Key? key, required this.productId}) : super(key: key);
+
+  final int productId;
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-  List<Color> colors = const [
-    Color(0xFF000000),
-    Color(0xFF7B2828),
-    Color(0xFF251497),
-    Color(0xFF08781A),
-    Color(0xFF7E0472),
-  ];
+  List<Color> colors = [];
+  List<String> sizes = [];
 
-  List<String> sizes = const [
-    'S',
-    'L',
-    'XL',
-    'XXL',
-    'XXXL',
-  ];
+  Color? _selectedColor;
+  String? _selectedSize;
 
-  Color _selectedColor = const Color(0xFF000000);
-  String _selectedSize = 'L';
-
-  TextStyle headlineTextStyle() {
-    return TextStyle(
-      fontSize: 18,
-      color: appbarTextColor.withOpacity(0.8),
-      fontWeight: FontWeight.w600,
-    );
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Get.find<ProductDetailsController>().getDetails(widget.productId);
+    });
   }
 
   @override
@@ -238,4 +228,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       ),
     );
   }
+
+  TextStyle headlineTextStyle() {
+    return TextStyle(
+      fontSize: 18,
+      color: appbarTextColor.withOpacity(0.8),
+      fontWeight: FontWeight.w600,
+    );
+  }
+
+  List<String> getSizes(String sizes) {
+    return sizes.split(',');
+  }
+
 }
