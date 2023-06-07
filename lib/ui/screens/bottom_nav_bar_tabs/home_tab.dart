@@ -1,20 +1,24 @@
+import 'package:final_ecommerce_app/ui/screens/brand_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../state_manager/list_states/brand_list_controller.dart';
+import '../../state_manager/product_states/products_by_remark_controller.dart';
 import '../../state_manager/user_states/auth_controller.dart';
 import '../../state_manager/bottom_navigation_bar_controller.dart';
 import '../../state_manager/list_states/category_list_controller.dart';
 import '../../state_manager/home_controller.dart';
-import '../../widgets/brand_item.dart';
-import '../../widgets/category_item.dart';
+import '../../widgets/brand_card.dart';
+import '../../widgets/category_card.dart';
 import '../../widgets/home_screen_widgets/appbar_icon_button.dart';
 import '../../widgets/home_screen_widgets/home_carousel_slider.dart';
 import '../../widgets/home_screen_widgets/remark_title.dart';
 import '../../widgets/home_screen_widgets/search_text_field.dart';
+import '../../widgets/product_card.dart';
 import '../email_verification_screen.dart';
 import '../profile_screen.dart';
+import '../remark_details_screen.dart';
 
 class HomeTab extends StatelessWidget {
   const HomeTab({Key? key}) : super(key: key);
@@ -68,111 +72,137 @@ class HomeTab extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GetBuilder<HomeController>(
-                builder: (homeController) {
-                  if (homeController.getSliderInProgress) {
-                    return const SizedBox(
-                      height: 180,
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    );
-                  }
-                  return HomeCarouselSlider(
-                    model: homeController.homeSliderData,
+              GetBuilder<HomeController>(builder: (homeController) {
+                if (homeController.getSliderInProgress) {
+                  return const SizedBox(
+                    height: 180,
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
                   );
                 }
-              ),
+                return HomeCarouselSlider(
+                  model: homeController.homeSliderData,
+                );
+              }),
               RemarkTitle(
                 label: 'All Categories',
                 onSeeAllTap: () {
                   Get.find<BottomNavigationBarController>().changeIndex(1);
                 },
               ),
-              GetBuilder<CategoryListController>(
-                  builder: (categoryController) {
-                    if(categoryController.getCategoriesInProgress) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
+              GetBuilder<CategoryListController>(builder: (categoryController) {
+                if (categoryController.getCategoriesInProgress) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: categoryController.categoryListModel.categories!
+                        .map((e) => CategoryCard(
+                              categoryItem: e,
+                            ))
+                        .toList(),
+                  ),
+                );
+              }),
+              RemarkTitle(label: 'Brands With Us', onSeeAllTap: () {
+                Get.to(const BrandListScreen());
+              }),
+              GetBuilder<BrandListController>(builder: (brandListController) {
+                if (brandListController.getBrandsInProgress) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: brandListController.brandListModel.brands!
+                        .map((e) => BrandCard(brandItem: e))
+                        .toList(),
+                  ),
+                );
+              }),
+              RemarkTitle(
+                label: 'Popular',
+                onSeeAllTap: () {
+                  Get.to(const RemarkDetailsScreen(title: 'Popular', forPopular: true,));
+                },
+              ),
+              GetBuilder<ProductsByRemarkController>(
+                  builder: (remarkController) {
+                if (remarkController.gettingPopularProducts) {
+                  return const SizedBox(
+                    height: 100,
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                }
+                return SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: remarkController.popularProductsModel.products!
+                        .map((e) => ProductCard(product: e))
+                        .toList(),
+                  ),
+                );
+              }),
+              RemarkTitle(
+                label: 'Special',
+                onSeeAllTap: () {
+                  Get.to(const RemarkDetailsScreen(title: 'Special', forSpecial: true,));
+                },
+              ),
+              GetBuilder<ProductsByRemarkController>(
+                  builder: (remarkController) {
+                    if (remarkController.gettingSpecialProducts) {
+                      return const SizedBox(
+                        height: 100,
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
                       );
                     }
                     return SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: categoryController.categoryListModel.categories!.map(
-                                (e) => CategoryItem(
-                                    categoryItem: e,
-                                )).toList(),
+                        children: remarkController.specialProductsModel.products!
+                            .map((e) => ProductCard(product: e))
+                            .toList(),
                       ),
                     );
-                  }
+                  }),
+              RemarkTitle(
+                label: 'New',
+                onSeeAllTap: () {
+                  Get.to(const RemarkDetailsScreen(title: 'New', forNew: true,));
+                },
               ),
-              RemarkTitle(label: 'Brands With Us', onSeeAllTap: () {}),
-              GetBuilder<BrandListController>(
-                  builder: (brandListController) {
-                    if(brandListController.getBrandsInProgress) {
-                      return const Center(child: CircularProgressIndicator(),);
+              GetBuilder<ProductsByRemarkController>(
+                  builder: (remarkController) {
+                    if (remarkController.gettingNewProducts) {
+                      return const SizedBox(
+                        height: 100,
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
                     }
                     return SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: brandListController.brandListModel.brands!.map(
-                                (e) => BrandCard(brandItem: e)
-                        ).toList(),
+                        children: remarkController.newProductsModel.products!
+                            .map((e) => ProductCard(product: e))
+                            .toList(),
                       ),
                     );
-                  }
-              ),
-              RemarkTitle(
-                label: 'Popular',
-                onSeeAllTap: () {},
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    Container(),
-                    Container(),
-                    Container(),
-                    Container(),
-                    Container(),
-                  ],
-                ),
-              ),
-              RemarkTitle(
-                label: 'Special',
-                onSeeAllTap: () {},
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    Container(),
-                    Container(),
-                    Container(),
-                    Container(),
-                    Container(),
-                  ],
-                ),
-              ),
-              RemarkTitle(
-                label: 'New',
-                onSeeAllTap: () {},
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    Container(),
-                    Container(),
-                    Container(),
-                    Container(),
-                    Container(),
-                  ],
-                ),
-              ),
+                  }),
             ],
           ),
         ),

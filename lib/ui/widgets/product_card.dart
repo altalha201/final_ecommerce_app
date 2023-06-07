@@ -6,8 +6,8 @@ import '../screens/product_details_screen.dart';
 import '../utils/application_colors.dart';
 import 'space.dart';
 
-class ProductListItem extends StatelessWidget {
-  const ProductListItem({
+class ProductCard extends StatelessWidget {
+  const ProductCard({
     Key? key, required this.product,
   }) : super(key: key);
 

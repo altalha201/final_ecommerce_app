@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import 'ui/state_manager/list_states/brand_list_controller.dart';
+import 'ui/state_manager/product_states/products_by_remark_controller.dart';
 import 'ui/state_manager/user_states/auth_controller.dart';
 import 'ui/state_manager/bottom_navigation_bar_controller.dart';
 import 'ui/state_manager/list_states/category_list_controller.dart';
@@ -22,5 +23,6 @@ class GetXBindings extends Bindings {
     Get.put(CategoryListController());
     Get.put(ProductListController());
     Get.put(BrandListController());
+    Get.put(ProductsByRemarkController());
   }
 }

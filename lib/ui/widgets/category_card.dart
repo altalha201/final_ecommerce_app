@@ -6,8 +6,8 @@ import '../screens/product_list_screen.dart';
 import '../utils/application_colors.dart';
 import 'space.dart';
 
-class CategoryItem extends StatelessWidget {
-  const CategoryItem({
+class CategoryCard extends StatelessWidget {
+  const CategoryCard({
     Key? key, required this.categoryItem,
   }) : super(key: key);
 

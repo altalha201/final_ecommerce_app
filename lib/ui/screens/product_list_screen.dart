@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../state_manager/product_states/product_list_controller.dart';
 import '../utils/application_colors.dart';
-import '../widgets/product_list_item.dart';
+import '../widgets/product_card.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen(
@@ -55,13 +55,13 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 childAspectRatio: 0.70,
               ),
               itemCount: widget.listByCategory
-                  ? (listController.productsByCategoryModel.products?.length ?? 0)
-                  : (listController.productsByBrandModel.products?.length ?? 0),
+                          ? (listController.productsByCategoryModel.products?.length ?? 0)
+              : (listController.productsByBrandModel.products?.length ?? 0),
               itemBuilder: (context, index) {
                 final item = widget.listByCategory
-                    ? listController.productsByCategoryModel.products!.elementAt(index)
-                    : listController.productsByBrandModel.products!.elementAt(index);
-                return ProductListItem(product: item);
+                    ? (listController.productsByCategoryModel.products![index])
+                    : (listController.productsByBrandModel.products![index]);
+                return ProductCard(product: item);
               },
             );
           },

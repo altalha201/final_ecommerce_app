@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../state_manager/bottom_navigation_bar_controller.dart';
 import '../../state_manager/list_states/category_list_controller.dart';
 import '../../utils/application_colors.dart';
-import '../../widgets/category_item.dart';
+import '../../widgets/category_card.dart';
 
 class CategoryTab extends StatelessWidget {
   const CategoryTab({Key? key}) : super(key: key);
@@ -26,9 +26,14 @@ class CategoryTab extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: GetBuilder<CategoryListController>(
           builder: (categoryController) {
+            if (categoryController.getCategoriesInProgress) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
             return RefreshIndicator(
               onRefresh: () async {
-                Get.find<CategoryListController>().getCategories();
+                categoryController.getCategories();
               },
               child: GridView.builder(
                   itemCount: categoryController.categoryListModel.categories?.length ?? 0,
@@ -38,7 +43,7 @@ class CategoryTab extends StatelessWidget {
                       mainAxisSpacing: 0,
                       childAspectRatio: 0.85),
                   itemBuilder: (context, index) {
-                    return CategoryItem(
+                    return CategoryCard(
                       categoryItem: categoryController.categoryListModel.categories!.elementAt(index)
                     );
                   }),

@@ -1,3 +1,4 @@
+import 'package:final_ecommerce_app/ui/state_manager/product_states/products_by_remark_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -26,6 +27,9 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     Get.find<HomeController>().getCarouselData();
     Get.find<CategoryListController>().getCategories();
     Get.find<BrandListController>().getBrands();
+    Get.find<ProductsByRemarkController>().getPopularProducts();
+    Get.find<ProductsByRemarkController>().getSpecialProducts();
+    Get.find<ProductsByRemarkController>().getNewProducts();
     super.initState();
   }
 
