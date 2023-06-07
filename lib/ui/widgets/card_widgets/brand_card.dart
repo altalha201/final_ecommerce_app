@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../data/models/brand_models/brand.dart';
-import '../screens/product_list_screen.dart';
-import '../utils/application_colors.dart';
+import '../../../data/models/brand_models/brand.dart';
+import '../../screens/product_list_screen.dart';
+import '../../utils/application_colors.dart';
 
 class BrandCard extends StatelessWidget {
   const BrandCard({Key? key, required this.brandItem}) : super(key: key);

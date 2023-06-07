@@ -6,16 +6,16 @@ import 'package:get/get.dart';
 import '../../state_manager/list_states/brand_list_controller.dart';
 import '../../state_manager/product_states/products_by_remark_controller.dart';
 import '../../state_manager/user_states/auth_controller.dart';
-import '../../state_manager/bottom_navigation_bar_controller.dart';
+import '../../state_manager/ui_states/bottom_navigation_bar_controller.dart';
 import '../../state_manager/list_states/category_list_controller.dart';
-import '../../state_manager/home_controller.dart';
-import '../../widgets/brand_card.dart';
-import '../../widgets/category_card.dart';
+import '../../state_manager/home_slider_controller.dart';
+import '../../widgets/card_widgets/brand_card.dart';
+import '../../widgets/card_widgets/category_card.dart';
 import '../../widgets/home_screen_widgets/appbar_icon_button.dart';
 import '../../widgets/home_screen_widgets/home_carousel_slider.dart';
 import '../../widgets/home_screen_widgets/remark_title.dart';
 import '../../widgets/home_screen_widgets/search_text_field.dart';
-import '../../widgets/product_card.dart';
+import '../../widgets/card_widgets/product_card.dart';
 import '../email_verification_screen.dart';
 import '../profile_screen.dart';
 import '../remark_details_screen.dart';
@@ -72,7 +72,7 @@ class HomeTab extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GetBuilder<HomeController>(builder: (homeController) {
+              GetBuilder<HomeSliderController>(builder: (homeController) {
                 if (homeController.getSliderInProgress) {
                   return const SizedBox(
                     height: 180,

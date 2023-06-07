@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../state_manager/bottom_navigation_bar_controller.dart';
+import '../../state_manager/ui_states/bottom_navigation_bar_controller.dart';
 import '../../utils/application_colors.dart';
 import '../../widgets/cart_screen_widgets/cart_item.dart';
 import '../../widgets/floating_price_widget.dart';

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../state_manager/bottom_navigation_bar_controller.dart';
+import '../../state_manager/ui_states/bottom_navigation_bar_controller.dart';
 import '../../state_manager/list_states/category_list_controller.dart';
 import '../../utils/application_colors.dart';
-import '../../widgets/category_card.dart';
+import '../../widgets/card_widgets/category_card.dart';
 
 class CategoryTab extends StatelessWidget {
   const CategoryTab({Key? key}) : super(key: key);

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../data/models/product_models/product.dart';
 import '../state_manager/product_states/products_by_remark_controller.dart';
-import '../widgets/product_card.dart';
+import '../widgets/card_widgets/product_card.dart';
 
 class RemarkDetailsScreen extends StatelessWidget {
   const RemarkDetailsScreen(

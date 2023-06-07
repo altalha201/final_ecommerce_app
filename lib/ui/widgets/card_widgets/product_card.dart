@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../data/models/product_models/product.dart';
-import '../screens/product_details_screen.dart';
-import '../utils/application_colors.dart';
-import 'space.dart';
+import '../../../data/models/product_models/product.dart';
+import '../../screens/product_details_screen.dart';
+import '../../utils/application_colors.dart';
+import '../space.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../state_manager/user_states/user_profile_controller.dart';
 import '../widgets/space.dart';
-import '../widgets/title_widgets.dart';
+import '../widgets/auth_title_widgets.dart';
 import 'bottom_nav_bar_screen.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
@@ -34,7 +34,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    const TitleWidgets(
+                    const AuthTitleWidgets(
                         title: "Complete Profile",
                         subtitle: "Get started with us with your details"),
                     TextFormField(

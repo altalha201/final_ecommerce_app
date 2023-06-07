@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../state_manager/user_states/auth_controller.dart';
-import '../state_manager/otp_expire_timer_controller.dart';
+import '../state_manager/ui_states/otp_expire_timer_controller.dart';
 import '../state_manager/user_states/user_auth_controller.dart';
 import '../utils/application_colors.dart';
 import '../widgets/space.dart';
-import '../widgets/title_widgets.dart';
+import '../widgets/auth_title_widgets.dart';
 import 'bottom_nav_bar_screen.dart';
 import 'complete_profile_screen.dart';
 
@@ -35,7 +35,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TitleWidgets(
+              const AuthTitleWidgets(
                 title: "Enter OTP Code",
                 subtitle: "A 4 Digit OTP Code has been Sent",
               ),

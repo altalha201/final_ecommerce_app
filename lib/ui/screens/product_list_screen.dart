@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../state_manager/product_states/product_list_controller.dart';
 import '../utils/application_colors.dart';
-import '../widgets/product_card.dart';
+import '../widgets/card_widgets/product_card.dart';
 
 class ProductListScreen extends StatefulWidget {
   const ProductListScreen(

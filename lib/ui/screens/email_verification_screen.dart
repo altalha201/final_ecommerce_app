@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../state_manager/user_states/user_auth_controller.dart';
 import '../widgets/space.dart';
-import '../widgets/title_widgets.dart';
+import '../widgets/auth_title_widgets.dart';
 import 'pin_verification_screen.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
@@ -30,7 +30,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const TitleWidgets(
+                const AuthTitleWidgets(
                     title: "Welcome Back",
                     subtitle: "Please Enter Your Email Address"),
                 TextFormField(

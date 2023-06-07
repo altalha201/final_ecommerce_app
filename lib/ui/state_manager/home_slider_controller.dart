@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../data/models/home_slider_model.dart';
 import '../../data/services/network_caller.dart';
 
-class HomeController extends GetxController {
+class HomeSliderController extends GetxController {
   bool _getSliderInProgress = false;
   HomeSliderModel _model = HomeSliderModel();
 

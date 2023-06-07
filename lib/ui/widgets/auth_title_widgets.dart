@@ -4,8 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import '../utils/application_colors.dart';
 import 'space.dart';
 
-class TitleWidgets extends StatelessWidget {
-  const TitleWidgets({Key? key, required this.title, required this.subtitle}) : super(key: key);
+class AuthTitleWidgets extends StatelessWidget {
+  const AuthTitleWidgets({Key? key, required this.title, required this.subtitle}) : super(key: key);
 
   final String title;
   final String subtitle;

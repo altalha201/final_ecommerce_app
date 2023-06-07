@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../state_manager/bottom_navigation_bar_controller.dart';
+import '../state_manager/ui_states/bottom_navigation_bar_controller.dart';
 import '../state_manager/list_states/brand_list_controller.dart';
 import '../state_manager/list_states/category_list_controller.dart';
-import '../state_manager/home_controller.dart';
+import '../state_manager/home_slider_controller.dart';
 import '../utils/application_colors.dart';
 import 'bottom_nav_bar_tabs/cart_tab.dart';
 import 'bottom_nav_bar_tabs/category_tab.dart';
@@ -24,7 +24,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
 
   @override
   void initState() {
-    Get.find<HomeController>().getCarouselData();
+    Get.find<HomeSliderController>().getCarouselData();
     Get.find<CategoryListController>().getCategories();
     Get.find<BrandListController>().getBrands();
     Get.find<ProductsByRemarkController>().getPopularProducts();

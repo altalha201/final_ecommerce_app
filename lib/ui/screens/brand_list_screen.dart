@@ -1,5 +1,5 @@
 import 'package:final_ecommerce_app/ui/state_manager/list_states/brand_list_controller.dart';
-import 'package:final_ecommerce_app/ui/widgets/brand_card.dart';
+import 'package:final_ecommerce_app/ui/widgets/card_widgets/brand_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
