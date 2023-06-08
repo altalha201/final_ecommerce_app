@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
-import '../../../data/models/profile_data.dart';
+import '../../../data/models/profile_models/user_profile_model.dart';
 import '../../../data/services/network_caller.dart';
-import 'auth_controller.dart';
+import 'cache_controller.dart';
 
 class UserProfileController extends GetxController {
   bool _getProfileDataInProgress = false;
@@ -19,11 +19,11 @@ class UserProfileController extends GetxController {
     final response = await NetworkCaller.getRequest(url: '/ReadProfile');
     _getProfileDataInProgress = false;
     if (response.isSuccess) {
-      final ProfileModel profileModel =
-          ProfileModel.fromJson(response.returnData);
-      if (profileModel.profileData != null) {
-        Get.find<AuthController>()
-            .saveProfileData(profileModel.profileData!.first);
+      final UserProfileModel profileModel =
+          UserProfileModel.fromJson(response.returnData);
+      if (profileModel.profile != null) {
+        Get.find<CacheController>()
+            .saveProfileData(profileModel.profile!.first);
         update();
         return true;
       } else {
@@ -48,11 +48,11 @@ class UserProfileController extends GetxController {
     _profileCompleteInProgress = false;
 
     if (response.isSuccess) {
-      final ProfileModel profileModel =
-          ProfileModel.fromJson(response.returnData);
-      if (profileModel.profileData != null) {
-        Get.find<AuthController>()
-            .saveProfileData(profileModel.profileData!.first);
+      final UserProfileModel profileModel =
+          UserProfileModel.fromJson(response.returnData);
+      if (profileModel.profile != null) {
+        Get.find<CacheController>()
+            .saveProfileData(profileModel.profile!.first);
         update();
         return true;
       } else {

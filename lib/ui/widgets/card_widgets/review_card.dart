@@ -1,3 +1,4 @@
+import 'package:final_ecommerce_app/data/models/review_models/review.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/application_colors.dart';
@@ -5,8 +6,10 @@ import '../space.dart';
 
 class ReviewCard extends StatelessWidget {
   const ReviewCard({
-    Key? key,
+    Key? key, required this.review,
   }) : super(key: key);
+
+  final Review review;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class ReviewCard extends StatelessWidget {
                     child: Icon(Icons.person_outline, color: iconColor, size: 20,),
                   ),
                   horizontalSpace(8.0),
-                  const Text("Rabbil Hasan", style: TextStyle(
+                  Text('${review.profile?.firstName ?? ''} ${review.profile?.lastName ?? ''}', style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: iconColor,
                     fontSize: 18,
@@ -37,9 +40,9 @@ class ReviewCard extends StatelessWidget {
                 ],
               ),
               verticalSpace(8.0),
-              const Text(
-                "Reference site about Lorem Ipsum, giving information on its origins. as well as a random Lipsum generator Reference site about Lorem Ipsum. giving information on its origins. as well as random Lipsum generator",
-                style: TextStyle(
+              Text(
+                review.description ?? '',
+                style: const TextStyle(
                   fontSize: 11,
                   color: colorGray,
                 ),

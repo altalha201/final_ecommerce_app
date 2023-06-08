@@ -1,7 +1,7 @@
-import 'package:final_ecommerce_app/ui/state_manager/product_states/product_details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../state_manager/product_states/product_details_controller.dart';
 import '../utils/application_colors.dart';
 import '../widgets/floating_price_widget.dart';
 import '../widgets/item_stepper.dart';
@@ -90,9 +90,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                     size: 14,
                                   ),
                                   horizontalSpace(4.0),
-                                  const Text(
-                                    '4.5',
-                                    style: TextStyle(
+                                  Text(
+                                    '${productDetails.product?.star ?? '0.0'}',
+                                    style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.w500,
                                         color: iconColor),
@@ -102,7 +102,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               horizontalSpace(8.0),
                               TextButton(
                                 onPressed: () {
-                                  Get.to(const ReviewsScreen());
+                                  Get.to(ReviewsScreen(productID: productDetails.id ?? 0,));
                                 },
                                 child: const Text(
                                   "Reviews",

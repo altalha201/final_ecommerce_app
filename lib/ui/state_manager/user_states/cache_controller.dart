@@ -3,16 +3,16 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../../data/models/profile_data.dart';
+import '../../../data/models/profile_models/profile.dart';
 import '../../screens/email_verification_screen.dart';
 
-class AuthController extends GetxController {
+class CacheController extends GetxController {
   static String? _token;
-  static ProfileData? _profileData;
+  static Profile? _profileData;
 
   static String? get token => _token;
 
-  static ProfileData? get profileData => _profileData;
+  static Profile? get profileData => _profileData;
 
   bool isLoggedIn() {
     getToken();
@@ -25,7 +25,7 @@ class AuthController extends GetxController {
     GetStorage().write("crafty_token", _token);
   }
 
-  void saveProfileData(ProfileData profile) {
+  void saveProfileData(Profile profile) {
     _profileData = profile;
     GetStorage().write("user_profile", jsonEncode(profile));
   }
@@ -37,7 +37,7 @@ class AuthController extends GetxController {
   void getProfileData() {
     final profileDataString = GetStorage().read("user_profile");
     if (profileDataString != null) {
-      _profileData = ProfileData.fromJson(jsonDecode(profileDataString) ?? '{}');
+      _profileData = Profile.fromJson(jsonDecode(profileDataString) ?? '{}');
     }
   }
 

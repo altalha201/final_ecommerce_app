@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../state_manager/list_states/brand_list_controller.dart';
 import '../../state_manager/product_states/products_by_remark_controller.dart';
-import '../../state_manager/user_states/auth_controller.dart';
+import '../../state_manager/user_states/cache_controller.dart';
 import '../../state_manager/ui_states/bottom_navigation_bar_controller.dart';
 import '../../state_manager/list_states/category_list_controller.dart';
 import '../../state_manager/home_slider_controller.dart';
@@ -36,7 +36,7 @@ class HomeTab extends StatelessWidget {
               AppbarIconButton(
                 iconData: Icons.person_outline,
                 onTap: () {
-                  final bool login = Get.find<AuthController>().isLoggedIn();
+                  final bool login = Get.find<CacheController>().isLoggedIn();
                   if (login) {
                     Get.to(ProfileScreen());
                   } else {

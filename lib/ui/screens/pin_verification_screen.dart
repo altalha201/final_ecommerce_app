@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../state_manager/user_states/auth_controller.dart';
+import '../state_manager/user_states/cache_controller.dart';
 import '../state_manager/ui_states/otp_expire_timer_controller.dart';
 import '../state_manager/user_states/user_auth_controller.dart';
 import '../utils/application_colors.dart';
@@ -76,7 +76,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                         if(response) {
                           Get.offAll(const BottomNavBarScreen());
                         } else {
-                          if (AuthController.token != null) {
+                          if (CacheController.token != null) {
                             Get.to(const CompleteProfileScreen());
                           } else {
                             Get.showSnackbar(const GetSnackBar(

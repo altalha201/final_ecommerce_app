@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:http/http.dart';
 
-import '../../ui/state_manager/user_states/auth_controller.dart';
+import '../../ui/state_manager/user_states/cache_controller.dart';
 import '../models/request_model.dart';
 import '../utils/urls.dart';
 
@@ -12,13 +12,13 @@ class NetworkCaller {
 
   static Future<ResponseModel> getRequest({required String url}) async {
     try {
-      log(AuthController.token.toString());
+      log(CacheController.token.toString());
       final Response response = await get(
         Uri.parse(Urls.baseUrl + url),
         headers: {
           'Content-type': 'application/json',
           'Accept': 'application/json',
-          'token': AuthController.token.toString(),
+          'token': CacheController.token.toString(),
         },
       );
       log(response.body);
@@ -53,7 +53,7 @@ class NetworkCaller {
         headers: {
           'Content-type': 'application/json',
           'Accept': 'application/json',
-          'token': AuthController.token.toString(),
+          'token': CacheController.token.toString(),
         },
         body: jsonEncode(requestBody),
       );

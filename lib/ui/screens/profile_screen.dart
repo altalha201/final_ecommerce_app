@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../state_manager/user_states/auth_controller.dart';
+import '../state_manager/user_states/cache_controller.dart';
 import '../state_manager/user_states/user_profile_controller.dart';
 import '../utils/application_colors.dart';
 import '../widgets/space.dart';
@@ -25,7 +25,7 @@ class ProfileScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () {
-              Get.find<AuthController>().clearUserData();
+              Get.find<CacheController>().clearUserData();
               Get.offAll(const BottomNavBarScreen());
             },
             child: const Text("Logout"),
@@ -52,14 +52,14 @@ class ProfileScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "${AuthController.profileData?.firstName} ${AuthController.profileData?.lastName}",
+                      "${CacheController.profileData?.firstName} ${CacheController.profileData?.lastName}",
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     Text(
-                      "${AuthController.profileData?.email}",
+                      "${CacheController.profileData?.email}",
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
@@ -88,7 +88,7 @@ class ProfileScreen extends StatelessWidget {
                 Expanded(
                   child: TextFormField(
                     enabled: false,
-                    initialValue: AuthController.profileData?.shippingAddress,
+                    initialValue: CacheController.profileData?.shippingAddress,
                     decoration: const InputDecoration(
                         disabledBorder: UnderlineInputBorder(
                             borderSide:
@@ -111,9 +111,9 @@ class ProfileScreen extends StatelessWidget {
 
   void updateName() {
     _firstNameET.text =
-        AuthController.profileData?.firstName ?? "";
+        CacheController.profileData?.firstName ?? "";
     _lastNameET.text =
-        AuthController.profileData?.lastName ?? "";
+        CacheController.profileData?.lastName ?? "";
     Get.bottomSheet(Container(
       height: 250,
       padding: const EdgeInsets.all(16.0),
@@ -157,7 +157,7 @@ class ProfileScreen extends StatelessWidget {
   }
 
   void updateShippingAddress() {
-    _shippingAddressET.text = AuthController.profileData?.shippingAddress ?? "";
+    _shippingAddressET.text = CacheController.profileData?.shippingAddress ?? "";
 
     Get.bottomSheet(Container(
       height: 250,
