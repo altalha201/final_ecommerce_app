@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import '../../utils/application_colors.dart';
 
 class ProductImageCarousel extends StatelessWidget {
-  ProductImageCarousel({Key? key}) : super(key: key);
+  ProductImageCarousel({Key? key, required this.images}) : super(key: key);
+
+  final List<String> images;
 
   final ValueNotifier<int> _currentIndex = ValueNotifier(0);
 
@@ -13,19 +15,18 @@ class ProductImageCarousel extends StatelessWidget {
     return Stack(
       children: [
         CarouselSlider(
-          items: [1, 2, 3, 4, 5].map((e) {
+          items: images.map((imgUrl) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     color: Colors.grey.withOpacity(0.2),
+                    image: DecorationImage(
+                      image: NetworkImage(imgUrl),
+                    )
                   ),
                   alignment: Alignment.center,
-                  child: Text(
-                    "$e",
-                    style: const TextStyle(fontSize: 16.0),
-                  ),
                 );
               },
             );
@@ -49,7 +50,7 @@ class ProductImageCarousel extends StatelessWidget {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < images.length; i++)
                       Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: Container(
