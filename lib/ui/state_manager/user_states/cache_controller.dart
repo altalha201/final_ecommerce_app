@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../data/models/profile_models/profile.dart';
 import '../../screens/email_verification_screen.dart';
@@ -14,45 +14,48 @@ class CacheController extends GetxController {
 
   static Profile? get profileData => _profileData;
 
-  bool isLoggedIn() {
-    getToken();
-    getProfileData();
+  Future<bool> isLoggedIn() async {
+    await getToken();
     return _token != null;
   }
 
-  void saveToken(String userToken) {
+  Future<void> saveToken(String userToken) async {
     _token = userToken;
-    GetStorage().write("crafty_token", _token);
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setString("crafty_token", userToken);
   }
 
-  void saveProfileData(Profile profile) {
+  Future<void> saveProfileData(Profile profile) async {
     _profileData = profile;
-    GetStorage().write("user_profile", jsonEncode(profile));
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String date = jsonEncode(profile);
+    await preferences.setString("crafty_user", date);
   }
 
-  void getToken() {
-    _token = GetStorage().read("crafty_token");
+  Future<void> getToken() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    _token = preferences.getString("crafty_token");
   }
 
-  void getProfileData() {
-    final profileDataString = GetStorage().read("user_profile");
-    if (profileDataString != null) {
-      _profileData = Profile.fromJson(jsonDecode(profileDataString) ?? '{}');
-    }
+  Future<void> getProfileData() async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    _profileData = Profile.fromJson(
+        jsonDecode(preferences.getString("crafty_user") ?? ""));
   }
 
-  void clearUserData() {
-    GetStorage().erase();
+  Future<void> clearUserData() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.clear();
     _token = null;
   }
 
-  void logout() {
-    clearUserData();
+  Future<void> logout() async {
+    await clearUserData();
     Get.to(const EmailVerificationScreen());
   }
 
-  bool checkAuthValidation() {
-    final authState = isLoggedIn();
+  Future<bool> checkAuthValidation() async {
+    final authState = await isLoggedIn();
     Get.to(const EmailVerificationScreen());
     return authState;
   }

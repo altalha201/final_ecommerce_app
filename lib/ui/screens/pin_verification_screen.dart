@@ -29,9 +29,9 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
     Get.find<OTPExpireTimerController>().startCountdown();
 
     return Scaffold(
-      body: GetBuilder<UserAuthController>(builder: (authController) {
-        return Padding(
-          padding: const EdgeInsets.all(24.0),
+      body: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -64,33 +64,37 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                 onChanged: (value) {},
               ),
               verticalSpace(16.0),
-              Visibility(
-                  visible: authController.pinVerificationInProgress,
-                  replacement: SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        final bool response =
-                            await authController.pinVerification(
-                                widget.email, _pinETController.text);
-                        if(response) {
-                          Get.offAll(const BottomNavBarScreen());
-                        } else {
-                          if (CacheController.token != null) {
-                            Get.to(const CompleteProfileScreen());
-                          } else {
-                            Get.showSnackbar(const GetSnackBar(
-                              title: "Failed",
-                              message: "Check once again before enter your otp",
-                              duration: Duration(seconds: 3),
-                            ));
-                          }
-                        }
-                      },
-                      child: const Text("Next"),
-                    ),
-                  ),
-                  child: const CircularProgressIndicator()),
+              GetBuilder<UserAuthController>(
+                  builder: (authController) {
+                    return Visibility(
+                        visible: authController.pinVerificationInProgress,
+                        replacement: SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              final bool response =
+                              await authController.pinVerification(
+                                  widget.email, _pinETController.text);
+                              if(response) {
+                                Get.offAll(const BottomNavBarScreen());
+                              } else {
+                                if (CacheController.token != null) {
+                                  Get.to(const CompleteProfileScreen());
+                                } else {
+                                  Get.showSnackbar(const GetSnackBar(
+                                    title: "Failed",
+                                    message: "Check once again before enter your otp",
+                                    duration: Duration(seconds: 3),
+                                  ));
+                                }
+                              }
+                            },
+                            child: const Text("Next"),
+                          ),
+                        ),
+                        child: const CircularProgressIndicator());
+                  }
+              ),
               verticalSpace(24.0),
               GetBuilder<OTPExpireTimerController>(builder: (timerController) {
                 return RichText(
@@ -137,8 +141,8 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
               ),
             ],
           ),
-        );
-      }),
+        ),
+      ),
     );
   }
 }

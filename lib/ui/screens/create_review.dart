@@ -4,7 +4,9 @@ import '../utils/application_colors.dart';
 import '../widgets/space.dart';
 
 class CreateReview extends StatelessWidget {
-  const CreateReview({Key? key}) : super(key: key);
+  const CreateReview({Key? key, required this.productId}) : super(key: key);
+
+  final int productId;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,9 @@ class CreateReview extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+
+                  },
                   child: const Text("Submit"),
                 ),
               )

@@ -2,38 +2,40 @@ import 'package:get/get.dart';
 
 import '../../../data/models/profile_models/user_profile_model.dart';
 import '../../../data/services/network_caller.dart';
+import '../../screens/complete_profile_screen.dart';
 import 'cache_controller.dart';
 
 class UserProfileController extends GetxController {
-  bool _getProfileDataInProgress = false;
+  bool _gettingUserProfile = false, _profileCompleteInProgress = false;
 
-  bool _profileCompleteInProgress = false;
+  UserProfileModel _profileModel = UserProfileModel();
 
-  bool get getProfileInProgress => _getProfileDataInProgress;
-
+  bool get getProfileInProgress => _gettingUserProfile;
   bool get profileCompleteInProgress => _profileCompleteInProgress;
 
-  Future<bool> getProfileData() async {
-    _getProfileDataInProgress = true;
+  UserProfileModel get profileModel => _profileModel;
+
+  Future<bool> getProfileData(bool fromPin) async {
+    _gettingUserProfile = true;
     update();
-    final response = await NetworkCaller.getRequest(url: '/ReadProfile');
-    _getProfileDataInProgress = false;
+
+    final response = await NetworkCaller.getRequest(url: "/ReadProfile");
+    _gettingUserProfile = false;
     if (response.isSuccess) {
-      final UserProfileModel profileModel =
-          UserProfileModel.fromJson(response.returnData);
-      if (profileModel.profile != null) {
+      _profileModel = UserProfileModel.fromJson(response.returnData);
+      if (_profileModel.profile != null) {
         Get.find<CacheController>()
-            .saveProfileData(profileModel.profile!.first);
-        update();
-        return true;
+            .saveProfileData(_profileModel.profile!.first);
       } else {
-        update();
-        return false;
+        Get.to(const CompleteProfileScreen());
       }
+      update();
+      return true;
+    } else if (response.statusCode == 401 && !fromPin) {
+      await Get.find<CacheController>().logout();
+      update();
+      return false;
     } else {
-      if (response.statusCode == 401) {
-        getProfileData();
-      }
       update();
       return false;
     }

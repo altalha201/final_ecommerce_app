@@ -82,7 +82,7 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
       }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.to(const CreateReview());
+          Get.to(CreateReview(productId: widget.productID,));
         },
         child: const Icon(Icons.add),
       ),

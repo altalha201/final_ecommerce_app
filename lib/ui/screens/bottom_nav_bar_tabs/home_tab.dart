@@ -35,8 +35,8 @@ class HomeTab extends StatelessWidget {
               const Spacer(),
               AppbarIconButton(
                 iconData: Icons.person_outline,
-                onTap: () {
-                  final bool login = Get.find<CacheController>().isLoggedIn();
+                onTap: () async {
+                  final bool login = await Get.find<CacheController>().isLoggedIn();
                   if (login) {
                     Get.to(ProfileScreen());
                   } else {
@@ -46,9 +46,7 @@ class HomeTab extends StatelessWidget {
               ),
               AppbarIconButton(
                 iconData: Icons.phone_enabled_outlined,
-                onTap: () {
-                  // Get.to(const CompleteProfileScreen());
-                },
+                onTap: () {},
               ),
               AppbarIconButton(
                 iconData: Icons.notifications_active_outlined,
