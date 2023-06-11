@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../state_manager/list_states/brand_list_controller.dart';
 import '../../state_manager/product_states/products_by_remark_controller.dart';
 import '../../state_manager/user_states/cache_controller.dart';
-import '../../state_manager/ui_states/bottom_navigation_bar_controller.dart';
+import '../../state_manager/ui_states/home_nav_controller.dart';
 import '../../state_manager/list_states/category_list_controller.dart';
 import '../../state_manager/home_slider_controller.dart';
 import '../../widgets/card_widgets/brand_card.dart';
@@ -16,12 +16,12 @@ import '../../widgets/home_screen_widgets/home_carousel_slider.dart';
 import '../../widgets/home_screen_widgets/remark_title.dart';
 import '../../widgets/home_screen_widgets/search_text_field.dart';
 import '../../widgets/card_widgets/product_card.dart';
-import '../email_verification_screen.dart';
-import '../profile_screen.dart';
+import '../auth_screens/email_verification_screen.dart';
+import '../user_profile_screens/profile_details_screen.dart';
 import '../remark_details_screen.dart';
 
-class HomeTab extends StatelessWidget {
-  const HomeTab({Key? key}) : super(key: key);
+class PrimaryTab extends StatelessWidget {
+  const PrimaryTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class HomeTab extends StatelessWidget {
                 onTap: () async {
                   final bool login = await Get.find<CacheController>().isLoggedIn();
                   if (login) {
-                    Get.to(ProfileScreen());
+                    Get.to(ProfileDetailsScreen());
                   } else {
                     Get.to(const EmailVerificationScreen());
                   }
@@ -86,7 +86,7 @@ class HomeTab extends StatelessWidget {
               RemarkTitle(
                 label: 'All Categories',
                 onSeeAllTap: () {
-                  Get.find<BottomNavigationBarController>().changeIndex(1);
+                  Get.find<HomeNavController>().changeIndex(1);
                 },
               ),
               GetBuilder<CategoryListController>(builder: (categoryController) {

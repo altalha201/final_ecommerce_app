@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../utils/application_colors.dart';
 import '../widgets/card_widgets/review_card.dart';
-import 'create_review.dart';
+import 'create_review_screen.dart';
 
 class ReviewsScreen extends StatefulWidget {
   const ReviewsScreen({Key? key, required this.productID}) : super(key: key);
@@ -45,10 +45,15 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                 child: SingleChildScrollView(
-                  child: Column(
-                    children: reviewController.readReviewsModel.reviews!
-                        .map((review) => ReviewCard(review: review))
-                        .toList(),
+                  child: RefreshIndicator(
+                    onRefresh: () async {
+                      await reviewController.getReviewsByID(widget.productID);
+                    },
+                    child: Column(
+                      children: reviewController.readReviewsModel.reviews!
+                          .map((review) => ReviewCard(review: review))
+                          .toList(),
+                    ),
                   ),
                 ),
               ),
@@ -81,8 +86,9 @@ class _ReviewsScreenState extends State<ReviewsScreen> {
         );
       }),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.to(CreateReview(productId: widget.productID,));
+        onPressed: () async {
+          await Get.to(CreateReviewScreen(productId: widget.productID,));
+          Get.find<ReviewController>().getReviewsByID(widget.productID);
         },
         child: const Icon(Icons.add),
       ),

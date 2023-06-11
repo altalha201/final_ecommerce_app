@@ -1,9 +1,10 @@
+import 'package:final_ecommerce_app/ui/state_manager/user_states/cache_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../utils/application_colors.dart';
-import 'bottom_nav_bar_screen.dart';
+import 'home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -17,7 +18,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2)).then((value) async {
-      Get.off(const BottomNavBarScreen());
+      Get.find<CacheController>().isLoggedIn().then((value) {
+
+      });
+      Get.off(const HomeScreen());
     });
   }
 

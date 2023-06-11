@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../state_manager/user_states/cache_controller.dart';
-import '../state_manager/ui_states/otp_expire_timer_controller.dart';
-import '../state_manager/user_states/user_auth_controller.dart';
-import '../utils/application_colors.dart';
-import '../widgets/space.dart';
-import '../widgets/auth_title_widgets.dart';
-import 'bottom_nav_bar_screen.dart';
-import 'complete_profile_screen.dart';
+import '../../state_manager/user_states/cache_controller.dart';
+import '../../state_manager/ui_states/otp_expire_timer_controller.dart';
+import '../../state_manager/user_states/user_auth_controller.dart';
+import '../../utils/application_colors.dart';
+import '../../widgets/space.dart';
+import '../../widgets/auth_title_widgets.dart';
+import '../home_screen.dart';
+import '../user_profile_screens/complete_profile_screen.dart';
 
 class PinVerificationScreen extends StatefulWidget {
   const PinVerificationScreen({Key? key, required this.email})
@@ -76,7 +76,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                               await authController.pinVerification(
                                   widget.email, _pinETController.text);
                               if(response) {
-                                Get.offAll(const BottomNavBarScreen());
+                                Get.offAll(const HomeScreen());
                               } else {
                                 if (CacheController.token != null) {
                                   Get.to(const CompleteProfileScreen());

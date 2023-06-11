@@ -45,7 +45,7 @@ class NetworkCaller {
 
   static Future<ResponseModel> postRequest({
     required String url,
-    required Map<String, String> requestBody,
+    required Map<String, dynamic> requestBody,
   }) async {
     try {
       final Response response = await post(

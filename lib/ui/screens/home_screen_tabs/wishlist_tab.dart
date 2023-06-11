@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../state_manager/ui_states/bottom_navigation_bar_controller.dart';
+import '../../state_manager/ui_states/home_nav_controller.dart';
 import '../../utils/application_colors.dart';
 
-class WishListTab extends StatelessWidget {
-  const WishListTab({Key? key}) : super(key: key);
+class WishlistTab extends StatelessWidget {
+  const WishlistTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class WishListTab extends StatelessWidget {
         leading: IconButton(
           splashColor: colorPrimary.withOpacity(0.1),
           onPressed: () {
-            Get.find<BottomNavigationBarController>().backToHome();
+            Get.find<HomeNavController>().backToHome();
           },
           icon: const Icon(Icons.arrow_back_ios),
         ),

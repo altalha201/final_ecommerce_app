@@ -1,13 +1,16 @@
+import 'package:final_ecommerce_app/data/models/cart_models/cart_item.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/application_colors.dart';
 import '../item_stepper.dart';
 import '../space.dart';
 
-class CartItem extends StatelessWidget {
-  const CartItem({
-    Key? key,
+class CartItemCard extends StatelessWidget {
+  const CartItemCard({
+    Key? key, required this.item,
   }) : super(key: key);
+
+  final CartItem item;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +25,11 @@ class CartItem extends StatelessWidget {
         shadowColor: colorPrimary.withOpacity(0.2),
         child: Row(
           children: [
-            Image.asset(
-              "assets/images/dummy_shoe.jpg",
+            Image.network(
+              item.product?.image ?? "https://photo.teamrabbil.com/images/2023/04/04/product.png",
               height: 140,
               width: 120,
-              fit: BoxFit.fitHeight,
+              fit: BoxFit.scaleDown,
             ),
             Expanded(
               child: Padding(
@@ -42,7 +45,7 @@ class CartItem extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "New Year Special Shoe",
+                                item.product?.title ?? "Unknown",
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
@@ -53,7 +56,7 @@ class CartItem extends StatelessWidget {
                               ),
                               verticalSpace(4.0),
                               Text(
-                                "Color: Red, Size: X",
+                                "Color: ${item.color}, Size: ${item.size}",
                                 maxLines: 1,
                                 style: TextStyle(
                                   fontSize: 12,
@@ -76,9 +79,9 @@ class CartItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       // crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          "\$ 100",
-                          style: TextStyle(
+                        Text(
+                          "\$ ${item.product?.price ?? 0}",
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w700,
                             color: colorPrimary,

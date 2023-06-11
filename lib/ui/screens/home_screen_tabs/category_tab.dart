@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../state_manager/ui_states/bottom_navigation_bar_controller.dart';
+import '../../state_manager/ui_states/home_nav_controller.dart';
 import '../../state_manager/list_states/category_list_controller.dart';
 import '../../utils/application_colors.dart';
 import '../../widgets/card_widgets/category_card.dart';
@@ -17,7 +17,7 @@ class CategoryTab extends StatelessWidget {
         leading: IconButton(
           splashColor: colorPrimary.withOpacity(0.1),
           onPressed: () {
-            Get.find<BottomNavigationBarController>().backToHome();
+            Get.find<HomeNavController>().backToHome();
           },
           icon: const Icon(Icons.arrow_back_ios),
         ),

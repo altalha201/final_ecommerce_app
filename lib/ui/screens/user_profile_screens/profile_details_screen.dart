@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../state_manager/user_states/cache_controller.dart';
-import '../state_manager/user_states/user_profile_controller.dart';
-import '../utils/application_colors.dart';
-import '../widgets/space.dart';
-import 'bottom_nav_bar_screen.dart';
+import '../../state_manager/user_states/cache_controller.dart';
+import '../../state_manager/user_states/user_profile_controller.dart';
+import '../../utils/application_colors.dart';
+import '../../widgets/space.dart';
+import '../home_screen.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class ProfileDetailsScreen extends StatefulWidget {
+  const ProfileDetailsScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<ProfileDetailsScreen> createState() => _ProfileDetailsScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ProfileDetailsScreenState extends State<ProfileDetailsScreen> {
   final TextEditingController _firstNameET = TextEditingController();
   final TextEditingController _lastNameET = TextEditingController();
   final TextEditingController _shippingAddressET = TextEditingController();
@@ -46,7 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             TextButton(
               onPressed: () {
                 Get.find<CacheController>().clearUserData();
-                Get.offAll(const BottomNavBarScreen());
+                Get.offAll(const HomeScreen());
               },
               child: const Text("Logout"),
             ),

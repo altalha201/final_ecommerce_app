@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../state_manager/user_states/user_profile_controller.dart';
-import '../widgets/space.dart';
-import '../widgets/auth_title_widgets.dart';
-import 'bottom_nav_bar_screen.dart';
+import '../../state_manager/user_states/user_profile_controller.dart';
+import '../../widgets/space.dart';
+import '../../widgets/auth_title_widgets.dart';
+import '../home_screen.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
   const CompleteProfileScreen({Key? key}) : super(key: key);
@@ -124,7 +124,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                                 final response = await profileController
                                     .completeProfile(requestBody);
                                 if (response) {
-                                  Get.offAll(const BottomNavBarScreen());
+                                  Get.offAll(const HomeScreen());
                                 } else {
                                   Get.showSnackbar(const GetSnackBar(
                                     title: "Failed",

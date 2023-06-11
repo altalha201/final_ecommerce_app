@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../data/models/profile_models/profile.dart';
-import '../../screens/email_verification_screen.dart';
+import '../../screens/auth_screens/email_verification_screen.dart';
 
 class CacheController extends GetxController {
   static String? _token;

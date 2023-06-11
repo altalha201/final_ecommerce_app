@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 import '../../../data/models/profile_models/user_profile_model.dart';
 import '../../../data/services/network_caller.dart';
-import '../../screens/complete_profile_screen.dart';
+import '../../screens/user_profile_screens/complete_profile_screen.dart';
 import 'cache_controller.dart';
 
 class UserProfileController extends GetxController {

@@ -2,9 +2,9 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../state_manager/user_states/user_auth_controller.dart';
-import '../widgets/space.dart';
-import '../widgets/auth_title_widgets.dart';
+import '../../state_manager/user_states/user_auth_controller.dart';
+import '../../widgets/space.dart';
+import '../../widgets/auth_title_widgets.dart';
 import 'pin_verification_screen.dart';
 
 class EmailVerificationScreen extends StatefulWidget {

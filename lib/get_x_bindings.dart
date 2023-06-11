@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import 'ui/state_manager/cart_states/cart_controller.dart';
 import 'ui/state_manager/home_slider_controller.dart';
 import 'ui/state_manager/list_states/brand_list_controller.dart';
 import 'ui/state_manager/list_states/category_list_controller.dart';
@@ -7,7 +8,7 @@ import 'ui/state_manager/product_states/product_details_controller.dart';
 import 'ui/state_manager/product_states/product_list_controller.dart';
 import 'ui/state_manager/product_states/products_by_remark_controller.dart';
 import 'ui/state_manager/review_states/review_controller.dart';
-import 'ui/state_manager/ui_states/bottom_navigation_bar_controller.dart';
+import 'ui/state_manager/ui_states/home_nav_controller.dart';
 import 'ui/state_manager/ui_states/otp_expire_timer_controller.dart';
 import 'ui/state_manager/user_states/cache_controller.dart';
 import 'ui/state_manager/user_states/user_auth_controller.dart';
@@ -16,7 +17,7 @@ import 'ui/state_manager/user_states/user_profile_controller.dart';
 class GetXBindings extends Bindings {
   @override
   void dependencies() {
-    Get.put(BottomNavigationBarController());
+    Get.put(HomeNavController());
     Get.put(UserAuthController());
     Get.put(OTPExpireTimerController());
     Get.put(CacheController());
@@ -28,5 +29,6 @@ class GetXBindings extends Bindings {
     Get.put(ProductsByRemarkController());
     Get.put(ProductDetailsController());
     Get.put(ReviewController());
+    Get.put(CartController());
   }
 }
